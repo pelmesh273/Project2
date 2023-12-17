@@ -1,0 +1,253 @@
+{% extends 'Heat_Life_ru/Main_page.html' %}
+{%load static%}
+
+{% block content_ru %}
+
+<div class="all_block">
+    <h1 class="NAME">Часто задаваемые вопросы</h1>
+
+    {% for el in object_list %}
+    <div class="one_block main">
+        <h2 class="one_block_name text">{{el.name_ru}}</h2>
+
+        <div class="art" style="display:none">
+            <p class="one_block_p" style=" white-space: pre-wrap;">
+                {{el.desc_ru}}
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(".text").click(function () {
+        e = $(this).closest('.main').find('.art');
+
+        if (!e.is(':visible')) {
+            $('.art').hide();
+            e.show();
+        }
+    });
+</script>
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+    @media screen and (min-width: 525px) {
+        footer {
+            display: flex;
+            position: relative;
+            margin-top: 0.5% !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+
+        html {
+            height: fit-content !important;
+        }
+
+        .table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            width: 678px;
+            text-align: left;
+            border-collapse: collapse;
+            background: #ffffff45;
+            font-size: 17px;
+            font-weight: 500;
+            margin-left: 10px;
+            white-space: pre-wrap;
+            color: #636363;
+            margin-left: 27px;
+            margin-top: -50px;
+        }
+
+        .NAME {
+            font-size: 36px;
+            font-family: math;
+            color: #494949d9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 1%;
+            white-space: nowrap;
+            border-bottom: 10px double #fcdb94;
+            width: fit-content;
+            margin-top: 19px;
+        }
+
+        .all_block {
+            margin-top: 7%;
+            display: flex;
+            width: 1369px;
+            margin-left: 14%;
+            box-shadow: -1px 4px 8px 0 rgba(34, 60, 80, 0.2);
+            flex-direction: column;
+        }
+
+        .one_block {
+        }
+
+        .one_block_name {
+            font-family: monospace;
+            color: #362a2ed9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 10px;
+            margin-top: 20px;
+            border-bottom: 2px solid #fcdb94;
+            width: fit-content;
+            white-space: pre-wrap;
+            font-size: 24px;
+        }
+
+        .one_block_img {
+            height: 600px;
+            width: 900px;
+            background-size: cover;
+            margin-left: 1%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .one_block_p {
+            font-size: 18px;
+            font-family: system-ui;
+            /* font-family: "Roboto", sans-serif; */
+            color: #362a2e;
+            font-weight: 400;
+            margin-left: 10px;
+            white-space: pre-wrap;
+        }
+
+        footer {
+            display: flex;
+            position: relative;
+            top: 20px !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+    }
+
+    @media screen and (max-width: 525px) {/*МОБИЛЬНАЯ*/
+        footer {
+            display: flex;
+            position: relative;
+            margin-top: 0.5% !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+
+        html {
+            height: fit-content !important;
+        }
+
+        .table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            width: 678px;
+            text-align: left;
+            border-collapse: collapse;
+            background: #ffffff45;
+            font-size: 17px;
+            font-weight: 500;
+            margin-left: 10px;
+            white-space: pre-wrap;
+            color: #636363;
+            margin-left: 27px;
+            margin-top: -50px;
+        }
+
+        .NAME {
+            font-size: 28px;
+            font-family: math;
+            color: #494949d9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 20%;
+            white-space: nowrap;
+            border-bottom: 10px double #fcdb94;
+            width: fit-content;
+            margin-top: 19px;
+            margin-left: 10% !important;
+        }
+
+        .all_block {
+            margin-top: 19%;
+            display: flex;
+            width: 425px;
+            margin-left: -1%;
+            box-shadow: -1px 4px 8px 0 rgba(34, 60, 80, 0.2);
+            flex-direction: column;
+        }
+
+        .one_block {
+        }
+
+        .one_block_name {
+
+            font-family: monospace;
+            color: #362a2ed9;
+            font-weight: 500;
+            margin-left: 10px;
+            margin-top: 20px;
+            border-bottom: 2px solid #fcdb94;
+            width: fit-content;
+            white-space: pre-wrap;
+            font-size: 17px;
+        }
+        
+
+        .one_block_img {
+            height: 600px;
+            width: 900px;
+            background-size: cover;
+            margin-left: 1%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .one_block_p {
+            font-size: 15px;
+            font-family: system-ui;
+            /* font-family: "Roboto", sans-serif; */
+            color: #362a2e;
+            font-weight: 400;
+            margin-left: 10px;
+            white-space: pre-wrap;
+        }
+
+        footer {
+            display: flex;
+            position: relative;
+            top: 20px !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+    }
+    
+    
+</style>
+
+{% endblock %}

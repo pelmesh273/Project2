@@ -1,0 +1,866 @@
+{% extends 'Heat_Life_gr/Main_page.html' %}
+{%load static%}
+
+{% block content_gr %}
+
+<div class="all_block" style="display: flex !important;">
+
+    <div class="one_block" style="width: 30%;">
+        <h2 class="one_block_name">{{prod.name_gr}}</h2>
+        <div style=" display: flex; flex-direction: column;">
+            <div class="one_block_img" style="background-image: url('../../../{{prod.img}}'); width: 100%; height: 400px;"></div>
+            <div style=" width: 100%;">
+                <p class="one_block_p" style=" white-space: pre-wrap; font-size: 16px !important;">{{prod.short_desc_gr}}</p>
+                <h3 class="one_block_name" style="font-size:16px !important">{{prod.price}}</h3>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="one_block" style="width: 36%;">
+        <article id="art_4">
+
+            <div class="article_int_wrapper">
+                <div class="article_int_light">
+                    <button onclick="change('#art_4', '#s_4_1')" class="bt"><p>Περιγραφή</p></button>
+                    <button onclick="change('#art_4', '#s_4_2')" class="bt"><p>Προδιαγραφές</p></button>
+                    <button onclick="change('#art_4', '#s_4_3')" class="bt"><p>Επιπλέον πληροφορίες</p></button>
+                </div>
+            </div>
+
+            <section id="s_4_1">
+                <div class="full">{{prod.full_desc_gr}}</div>
+            </section>
+
+            <section id="s_4_2" style="display:none">
+                <div class="full">{{prod.tech_desc_gr}}</div>
+            </section>
+
+            <section id="s_4_3" style="display:none">
+                <div class="full">{{prod.extra_desc_gr}}</div>
+            </section>
+
+        </article>
+    </div>
+
+    <div class="form_wr" style=" width: 53%;">
+        <div class="container">
+
+            <!-- content содержит содержимое формы -->
+            <div class="content">
+
+                <!-- Левая колонка: адрес, телефоны, email. Можете добавить свое -->
+                <div class="left-side">
+                    <div class="address details">
+
+                        <!-- Вместо классов: название шрифтовых иконок (fontawesome.com) -->
+                        <i class="fas fa-map-marker-alt"></i>
+
+                        <!-- topic - заголовок, text-one, text-two - текст -->
+                        <div class="topic">Διεύθυνση</div>
+                        <div class="text-one">πόλη Νοβοσιμπίρσκ</div>
+                        <div class="text-two">Galushchaka 1</div>
+                    </div>
+                    <div class="phone details">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="topic">Τηλέφωνο</div>
+                        <div class="text-one">+357 96 578760</div>
+                        <div class="text-two">+357 99 951563</div>
+                    </div>
+                    <div class="email details">
+                        <i class="fas fa-envelope"></i>
+                        <div class="topic">Email</div>
+                        <div class="text-one">svheatlife@gmail.com</div>
+                        <div class="text-two">heatlife-cyprus.com</div>
+                    </div>
+                </div>
+
+                <!-- Правая колонка: сама форма -->
+                <div class="right-side">
+
+                    <!-- Заголовок для формы -->
+                    <div class="topic-text">Κάνω μια παραγγελία</div>
+
+                    <!-- Какой-то дополнительный текст -->
+                    <p>
+                        Για να κάνετε μια παραγγελία, συμπληρώστε την παρακάτω φόρμα, θα επικοινωνήσουμε μαζί σας
+                    </p>
+
+                    <!-- Форма обратной связи -->
+                    <form method="post" name="to_like" id="myform">
+                        {% csrf_token %}
+                        <!-- Каждый input для выравнивания вкладываем в блок input-box -->
+                        <div class="input-box">
+                            {{form.name}}
+                        </div>
+                        <div class="input-box">
+                            {{form.email}}
+                        </div>
+                        <div class="input-box">
+                            {{form.phone}}
+                        </div>
+                        <div id="alert" style="display:none"></div>
+                        <div class="input-box">
+                            {{form.adress}}
+                        </div>
+                        <div class="input-box message-box" id="i5">
+                            {{form.text}}
+                        </div>
+                        <input value="{{ prod.name_en }}" type="hidden" name="to_like">
+                        <button name="my_button" type="submit" class="BN" id="BN_1">Στείλετε!</button>
+                        <div class="BN" style="display:none" id="BN_2">Ευχαριστούμε για την επικοινωνία</div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="https://kit.fontawesome.com/fce9a50d02.js"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#myform").on("submit", function (event) {
+
+            event.preventDefault();
+            $.ajax({
+                url: "/product_dv/" + {{ pk }},
+                type: "post",
+                'data': $(this).serialize(),
+                success: function (response) {
+                    /*console.log("Данные успешно отправлены!");*/
+                    if (response.success) {
+                        $('#alert').hide();
+                        $('#BN_1').hide();
+                        $('#BN_2').show();
+                    } else {
+                        $('#alert').html('<div class="alert alert-danger">' + "please ensure that your phonenumber and email is correct" + '</div>').show();
+                    }
+                },
+            });
+        });
+    });
+
+    document.getElementsByName('name')[0].placeholder = 'Ονομα';
+    document.getElementsByName('email')[0].placeholder = 'Ταχυδρομείο';
+    document.getElementsByName('phone')[0].placeholder = 'Τηλέφωνο';
+    document.getElementsByName('adress')[0].placeholder = 'Διεύθυνση';
+    document.getElementsByName('text')[0].placeholder = 'Μήνυμα';
+
+</script>
+
+<script>
+    function change(a, s) {
+
+        try {
+            $(a).children('section').hide();
+            $(s).show();
+        } catch (error) { }
+    }
+</script>
+
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+    @media screen and (min-width: 525px) {
+        footer {
+            top: 195px !important;
+        }
+
+        /* Подключение шрифта Roboto */
+        @import url("https:/*fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+        /* Убираем все отступы */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+            *,
+            *::after,
+            *::before {
+                box-sizing: inherit;
+            }
+
+        /* При расчете размеров инпутов учитываем внутренние отступы и границы */
+        input,
+        textarea {
+            box-sizing: border-box;
+        }
+
+        /* Ограничиваем контейнер по ширине 1000px */
+        .container {
+            width: 95%;
+            max-width: 1000px;
+            padding: 0 20px;
+            margin-top: 10px;
+        }
+
+        /* Стили самой формы */
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: "Roboto", sans-serif;
+            position: relative;
+            top: 10%;
+            left: 0%;
+            background: #fff;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+            flex-direction: row-reverse;
+        }
+
+        /* Стили левой колонки */
+        .left-side {
+            width: 25%;
+            height: 100%;
+            margin-left: 11px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+            /* Стили разделительной линии между левой и правой колонкой */
+            .left-side::before {
+                content: "";
+                position: absolute;
+                height: 70%;
+                width: 2px;
+                background: #afafb6;
+                right: 124px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+        /* Стили правой колонки */
+        .right-side {
+            width: 75%; /* занимает 75% общей ширины */
+            margin-left: 75px;
+        }
+
+        /* Элементы левой колонки: адрес, телефон, email */
+        .details {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+            /* Общие стили для иконок */
+            .details i {
+                font-size: 25px;
+                color: #FF5722;
+                margin-bottom: 10px;
+            }
+
+        /* Стили для заголовков левой колонки */
+        .topic {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 7px; /* отступ снизу 7px */
+        }
+
+        /* Стили для текста левой колонки */
+        .text-one,
+        .text-two {
+            font-size: 14px;
+            color: #afafb6;
+        }
+
+        /* Заголовок правой колонки */
+        .topic-text {
+            font-size: 23px;
+            font-weight: 600;
+            color: #FF5722;
+            margin-bottom: 10px;
+        }
+
+        /* Текст правой колонки */
+        .right-side p {
+            margin-bottom: 20px;
+        }
+
+        /* Контейнер для input'ов формы */
+        .input-box {
+            height: 50px; /* по сути задаем высоту input'а */
+            width: 100%; /* ширина на всю ширину правой колонки (с учетом padding) */
+            margin-bottom: 20px; /* отступаем снизу 20px */
+        }
+
+            /* Стили для input и textarea (поле сообщение) */
+            .input-box input,
+            .input-box textarea {
+                height: 100%; /* растягиваем на всю высоту контейнера 50px */
+                width: 100%; /* растягиваем на всю ширину */
+                border: none; /* убираем внешние края */
+                border-radius: 5px; /* скругляем края */
+                background: #f0f1f8; /* задаем цвет фона */
+                padding: 0 20px; /* отступ справа и слева 20px */
+            }
+
+            /* Отдельно стилизуем поле сообщение */
+            .input-box textarea {
+                resize: none; /* чтобы нельзя было менять высоту */
+                padding: 20px;
+                font-family: "Roboto", sans-serif;
+            }
+
+        /* Это контейнер для поля сообщение */
+        .message-box {
+            min-height: 110px; /* минимальная высота 110px */
+        }
+
+        .BN {
+            color: #fff;
+            font-size: 18px;
+            background: #FF5722;
+            outline: none;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 7px;
+            transition: 0.2s;
+        }
+
+        /* Стили для контейнера кнопки */
+        .BN {
+            display: inline-block; /* делаем блочно-строчный элемент */
+        }
+
+        /* Стили для самой кнопки */
+        .BN {
+            color: #fff;
+            font-size: 18px;
+            background: #FF5722;
+            outline: none;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 7px;
+            transition: 0.2s;
+        }
+
+            /* Меняем цвет фона при наведении на кнопку */
+            .BN:hover {
+                background-color: #f3741c;
+            }
+
+        footer {
+            display: flex;
+            position: relative;
+            margin-top: 1.5% !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+
+        .full {
+            font-size: 19px;
+            font-family: system-ui;
+            /* font-family: "Roboto", sans-serif; */
+            color: #362a2e;
+            font-weight: 400;
+            margin-left: 10px;
+            white-space: pre-wrap;
+        }
+
+        .bt {
+            background-color: #F9F0DA;
+            border-radius: 0px;
+            width: 33%;
+            margin-left: 20px;
+            color: #777777;
+            margin-right: 10px;
+            margin-bottom: 2%;
+            font-size: 16px;
+            border: none;
+            max-height: 93%;
+            padding: 11px;
+            border-left: 4px #ffc10763 solid;
+            border-right: 4px #ffc10763 solid;
+            height: 75%;
+        }
+
+        html {
+            height: fit-content !important;
+        }
+
+        .table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            width: 678px;
+            text-align: left;
+            border-collapse: collapse;
+            background: #ffffff45;
+            font-size: 17px;
+            font-weight: 500;
+            margin-left: 10px;
+            white-space: pre-wrap;
+            color: #636363;
+            margin-left: 27px;
+            margin-top: -50px;
+        }
+
+        .NAME {
+            font-size: 36px;
+            font-family: math;
+            color: #494949d9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 20%;
+            white-space: nowrap;
+            border-bottom: 10px double #fcdb94;
+            width: fit-content;
+            margin-top: 19px;
+        }
+
+        .all_block {
+            margin-top: 7%;
+            display: flex;
+            width: 1449px;
+            margin-left: 12%;
+            box-shadow: -1px 4px 8px 0 rgba(34, 60, 80, 0.2);
+            flex-direction: column;
+            display: flex !important;
+            flex-direction: row;
+            height: 683px;
+        }
+
+        .one_block {
+            width: 30%;
+            box-shadow: 4px 0px 14px #9e9e9e29;
+            margin-left: 19px;
+            margin-bottom: 16px;
+            margin-top: 11px;
+        }
+
+        .one_block_name {
+            font-size: 27px;
+            font-family: monospace;
+            color: #362a2ed9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 10px;
+            white-space: nowrap;
+            margin-top: 20px;
+            border-bottom: 2px solid #fcdb94;
+            width: fit-content;
+        }
+
+        .one_block_img {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            margin-left: 1%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .one_block_p {
+            font-size: 18px;
+            font-family: system-ui;
+            /* font-family: "Roboto", sans-serif; */
+            color: #362a2e;
+            font-weight: 400;
+            margin-left: 10px;
+            white-space: pre-wrap;
+        }
+
+        article {
+            height: fit-content;
+            width: 98%;
+        }
+
+        .article_int_light {
+            width: 100% !important;
+            margin-left: 0% !important;
+            margin-top: 4% !important;
+            border-bottom: 0px #ffc10763 double !important;
+            height: 50px !important;
+            position: relative !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-evenly !important;
+        }
+
+        section {
+            order: 0px #ed600000 solid !important;
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2) !important;
+            border-radius: 0px !important;
+            margin-bottom: 0% !important;
+            overflow: hidden !important;
+            margin-left: 0% !important;
+            height: 741px !important;
+            width: 100% !important;
+        }
+
+        footer {
+            display: flex;
+            position: relative;
+            top: 20px !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+    }
+
+    @media screen and (max-width: 525px) {
+
+        .dropbtn_lang {
+            background-color: #ed600000;
+            color: #FF5722;
+            padding: 4px;
+            font-size: 17px;
+            border: none;
+            margin-top: -3px;
+            margin-left: 16px;
+            border: 1px solid;
+            border-radius: 5px;
+            width: 25px !important;
+            height: 38px !important;
+        }
+
+        .form_wr {
+            width: 98% !important;
+        }
+
+        footer {
+            top: 195px !important;
+        }
+
+        /* Подключение шрифта Roboto */
+        @import url("https:/*fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+        /* Убираем все отступы */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+            *,
+            *::after,
+            *::before {
+                box-sizing: inherit;
+            }
+
+        /* При расчете размеров инпутов учитываем внутренние отступы и границы */
+        input,
+        textarea {
+            box-sizing: border-box;
+        }
+
+        /* Ограничиваем контейнер по ширине 1000px */
+        .container {
+            width: 95%;
+            max-width: 1000px;
+            padding: 0 20px;
+            margin-top: 10px;
+        }
+
+        /* Стили самой формы */
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: "Roboto", sans-serif;
+            position: relative;
+            top: 10%;
+            left: 0%;
+            background: #fff;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+            flex-direction: column-reverse;
+        }
+
+        /* Стили левой колонки */
+        .left-side {
+            width: 95%;
+            height: 100%;
+            margin-left: 11px;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            margin-top: 16px;
+        }
+
+            /* Стили разделительной линии между левой и правой колонкой */
+            .left-side::before {
+                content: "";
+                position: absolute;
+                height: 2px;
+                width: 85%;
+                background: #afafb6;
+                right: 50px;
+                top: -5%;
+                transform: translateY(-50%);
+            }
+
+        /* Стили правой колонки */
+        .right-side {
+            width: 96%;
+            margin-left: 0px;
+        }
+
+        /* Элементы левой колонки: адрес, телефон, email */
+        .details {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+            /* Общие стили для иконок */
+            .details i {
+                font-size: 25px;
+                color: #FF5722;
+                margin-bottom: 10px;
+            }
+
+        /* Стили для заголовков левой колонки */
+        .topic {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 7px; /* отступ снизу 7px */
+        }
+
+        /* Стили для текста левой колонки */
+        .text-one,
+        .text-two {
+            font-size: 14px;
+            color: #afafb6;
+        }
+
+        /* Заголовок правой колонки */
+        .topic-text {
+            font-size: 23px;
+            font-weight: 600;
+            color: #FF5722;
+            margin-bottom: 10px;
+        }
+
+        /* Текст правой колонки */
+        .right-side p {
+            margin-bottom: 20px;
+        }
+
+        /* Контейнер для input'ов формы */
+        .input-box {
+            height: 50px; /* по сути задаем высоту input'а */
+            width: 100%; /* ширина на всю ширину правой колонки (с учетом padding) */
+            margin-bottom: 20px; /* отступаем снизу 20px */
+        }
+
+            /* Стили для input и textarea (поле сообщение) */
+            .input-box input,
+            .input-box textarea {
+                height: 100%; /* растягиваем на всю высоту контейнера 50px */
+                width: 100%; /* растягиваем на всю ширину */
+                border: none; /* убираем внешние края */
+                border-radius: 5px; /* скругляем края */
+                background: #f0f1f8; /* задаем цвет фона */
+                padding: 0 20px; /* отступ справа и слева 20px */
+            }
+
+            /* Отдельно стилизуем поле сообщение */
+            .input-box textarea {
+                resize: none; /* чтобы нельзя было менять высоту */
+                padding: 20px;
+                font-family: "Roboto", sans-serif;
+            }
+
+        /* Это контейнер для поля сообщение */
+        .message-box {
+            min-height: 110px; /* минимальная высота 110px */
+        }
+
+        .BN {
+            color: #fff;
+            font-size: 18px;
+            background: #FF5722;
+            outline: none;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 7px;
+            transition: 0.2s;
+        }
+
+        /* Стили для контейнера кнопки */
+        .BN {
+            display: inline-block; /* делаем блочно-строчный элемент */
+        }
+
+        /* Стили для самой кнопки */
+        .BN {
+            color: #fff;
+            font-size: 18px;
+            background: #FF5722;
+            outline: none;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 7px;
+            transition: 0.2s;
+        }
+
+            /* Меняем цвет фона при наведении на кнопку */
+            .BN:hover {
+                background-color: #f3741c;
+            }
+
+        footer {
+            display: flex;
+            position: relative;
+            margin-top: 1.5% !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+
+        .full {
+            font-size: 17px;
+            font-family: system-ui;
+            /* font-family: "Roboto", sans-serif; */
+            color: #362a2e;
+            font-weight: 400;
+            margin-left: 10px;
+            white-space: pre-wrap;
+        }
+
+        .bt {
+            background-color: #F9F0DA;
+            border-radius: 0px;
+            width: 25%;
+            margin-left: 0px;
+            color: #777777;
+            margin-right: 10px;
+            margin-bottom: 2%;
+            font-size: 13px;
+            border: none;
+            max-height: 93%;
+            padding: 11px;
+            height: 56%;
+            font-family: monospace;
+        }
+
+        html {
+            height: fit-content !important;
+        }
+
+        .table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            width: 678px;
+            text-align: left;
+            border-collapse: collapse;
+            background: #ffffff45;
+            font-size: 17px;
+            font-weight: 500;
+            margin-left: 10px;
+            white-space: pre-wrap;
+            color: #636363;
+            margin-left: 27px;
+            margin-top: -50px;
+        }
+
+        .NAME {
+            font-size: 36px;
+            font-family: math;
+            color: #494949d9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 20%;
+            white-space: nowrap;
+            border-bottom: 10px double #fcdb94;
+            width: fit-content;
+            margin-top: 19px;
+        }
+
+        .all_block {
+            margin-top: 19%;
+            width: 408px;
+            margin-left: 2%;
+            box-shadow: -1px 4px 8px 0 rgba(34, 60, 80, 0.2);
+            height: fit-content;
+            flex-direction: column !important;
+        }
+
+        .one_block {
+            width: 94% !important;
+            box-shadow: 4px 0px 14px #9e9e9e29;
+            margin-left: 19px;
+            margin-bottom: 16px;
+            margin-top: 11px;
+        }
+
+        .one_block_name {
+            font-size: 27px;
+            font-family: monospace;
+            color: #362a2ed9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 10px;
+            white-space: nowrap;
+            margin-top: 20px;
+            border-bottom: 2px solid #fcdb94;
+            width: fit-content;
+        }
+
+        .one_block_img {
+            width: 100%;
+            height: 400px;
+            background-size: cover;
+            margin-left: 1%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .one_block_p {
+            font-size: 18px;
+            font-family: system-ui;
+            /* font-family: "Roboto", sans-serif; */
+            color: #362a2e;
+            font-weight: 400;
+            margin-left: 10px;
+            white-space: pre-wrap;
+        }
+
+        article {
+            height: fit-content;
+            width: 98%;
+        }
+
+        .article_int_light {
+            width: 100% !important;
+            margin-left: 2% !important;
+            margin-top: 4% !important;
+            border-bottom: 0px #ffc10763 double !important;
+            height: 50px !important;
+            position: relative !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-evenly !important;
+        }
+
+        section {
+            order: 0px #ed600000 solid !important;
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2) !important;
+            border-radius: 0px !important;
+            margin-bottom: 0% !important;
+            overflow: hidden !important;
+            margin-left: 0% !important;
+            height: fit-content !important;
+            width: 100% !important;
+        }
+
+        footer {
+            display: flex;
+            position: relative;
+            top: 20px !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+    }
+</style>
+{% endblock %}

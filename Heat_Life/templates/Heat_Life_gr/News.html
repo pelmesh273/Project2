@@ -1,0 +1,259 @@
+{% extends 'Heat_Life_gr/Main_page.html' %}
+{%load static%}
+
+{% block content_gr %}
+
+
+<p class="h">Λίστα ειδήσεων</p>
+{% for el in new_unsorted %}
+<div class="new" style="display:none">
+    <p style="display:none">{{el.language}}</p>
+    <div style="background-image:url('../../../{{el.preview}}');" class="shad_img"></div>
+    <div class="better_text">
+        <p class="n">{{el.name}}</p>
+        <p>{{el.preview_text}}</p>
+        <a href="{%url 'News_dv' el.id%}" style="text-decoration: none;">Δείτε αναλυτικά</a>
+    </div>
+</div>
+{% endfor %}
+
+{% for el in object_list %}
+<div class="new">
+    <p style="display:none">{{el.language}}</p>
+    <div style="background-image:url('../../../{{el.preview}}');" class="shad_img"></div>
+    <div class="better_text">
+        <p class="n">{{el.name}}</p>
+        <p>{{el.preview_text}}</p>
+        <a href="{%url 'News_dv' el.id%}" style="text-decoration: none;">Δείτε αναλυτικά</a>
+    </div>
+</div>
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?q={{q}}&page=1">&laquo; first</a>
+        <a href="?q={{q}}&page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?q={{q}}&page={{ page_obj.next_page_number }}">next</a>
+        <a href="?q={{q}}&page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<style>
+
+    @media screen and (max-width: 525px) {
+
+        main {
+            height: 100% !important;
+            width: 100%;
+            margin-top: 16% !important;
+        }
+
+        footer {
+            display: flex;
+            position: relative;
+            margin-top: 0.5% !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+
+        html {
+            height: 100% !important;
+        }
+
+        body {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .better_text {
+            border-left: 2px solid #ff572287;
+            height: fit-content;
+            width: 62%;
+            margin-top: 11px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 6px;
+        }
+
+        .shad_img {
+            width: 95%;
+            height: 94%;
+            background-size: cover;
+            /* box-shadow: inset 11px 11px 43px #ffbc577a; */
+            /* box-shadow: -14px 11px 47px #ffbc577a; */
+            border: 8px solid white;
+        }
+
+        .h {
+            margin-top: 16%;
+            font-size: 22px;
+            font-family: arial;
+            margin-left: 26%;
+            color: #362a2e;
+            font-weight: 800;
+        }
+
+        .new {
+            display: flex;
+            /* background-color: #f0f1f8; */
+            width: 407px;
+            height: 60%;
+            margin-top: 24px;
+            margin-left: 1%;
+            box-shadow: -1px 4px 8px 0 rgba(34, 60, 80, 0.2);
+            flex-direction: column;
+        }
+
+            .new .n {
+                font-size: 13px;
+                font-family: arial;
+                color: #362a2ed9;
+                font-weight: 800;
+                margin-top: 0px;
+                margin-left: 10px;
+                white-space: nowrap;
+            }
+
+            .new p {
+                font-size: 18px;
+                font-family: monospace;
+                /* font-family: "Roboto", sans-serif; */
+                color: #362a2e;
+                font-weight: 400;
+                margin-left: 10px;
+            }
+
+            .new img {
+                width: 50%;
+            }
+
+            .new a {
+                text-decoration: none;
+                margin-left: 10px;
+                font-size: 17px;
+                color: #FF5722;
+            }
+
+        footer {
+            display: flex;
+            position: relative;
+            top: 20px !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+    }
+
+    @media screen and (min-width: 525px) {
+        main {
+            height: 100% !important;
+            width: 100%;
+            margin-top: -3% !important;
+        }
+
+        footer {
+            display: flex;
+            position: relative;
+            margin-top: 0.5% !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+
+        html {
+            height: 100% !important;
+        }
+
+        body {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .better_text {
+            border-left: 2px solid #ff572287;
+            height: fit-content;
+            width: 62%;
+            margin-top: 11px;
+            margin-left: 0px;
+            margin-right: 10px;
+        }
+
+        .shad_img {
+            width: 43%;
+            height: 94%;
+            background-size: cover;
+            /* box-shadow: inset 11px 11px 43px #ffbc577a; */
+            /* box-shadow: -14px 11px 47px #ffbc577a; */
+            border: 8px solid white;
+        }
+
+        .h {
+            margin-top: 9%;
+            font-size: 26px;
+            font-family: arial;
+            margin-left: 45%;
+            color: #362a2e;
+            font-weight: 800;
+        }
+
+        .new {
+            display: flex;
+            /* background-color: #f0f1f8; */
+            width: 911px;
+            height: 30%;
+            margin-top: 24px;
+            margin-left: 1%;
+            box-shadow: -1px 4px 8px 0 rgba(34, 60, 80, 0.2);
+        }
+
+            .new .n {
+                font-size: 18px;
+                font-family: arial;
+                color: #362a2ed9;
+                font-weight: 800;
+                margin-top: 0px;
+                margin-left: 10px;
+                white-space: nowrap;
+            }
+
+            .new p {
+                font-size: 18px;
+                font-family: monospace;
+                /* font-family: "Roboto", sans-serif; */
+                color: #362a2e;
+                font-weight: 400;
+                margin-left: 10px;
+            }
+
+            .new img {
+                width: 50%;
+            }
+
+            .new a {
+                text-decoration: none;
+                margin-left: 10px;
+                font-size: 17px;
+                color: #FF5722;
+            }
+
+        footer {
+            display: flex;
+            position: relative;
+            top: 20px !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,2565 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>HEATLIFE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+{%load static%}
+{% load i18n %}
+<body>
+
+
+
+        <header class="mobile_header">
+     <img src="{% static 'Heat_Life/img/LOGO_mini.png' %}" style="width: 42%; height: 60%; margin-top: 3%; margin-left: 2%;" onclick="location.href='{% url 'Main_page'%}';" id="header_img" />
+     <div class="header_menu">
+
+         <!-------------------------------------------------- ------------------------->
+         <!-- Language change -->
+         <!-------------------------------------------------- ------------------------->
+         <div class="dropdown_lang">
+             <button class="dropbtn_lang">EN</button>
+             <div class="dropdown-content_lang">
+                 <form method="post">
+                     {% csrf_token %}
+                     <input value="gr" type="hidden" name="post_lang">
+                     <button value="gr" type="submit">GR</button>
+                 </form>
+
+                 <form method="post">
+                     {% csrf_token %}
+                     <input value="en" type="hidden" name="post_lang">
+                     <button value="en" type="submit">EN</button>
+                 </form>
+
+                 <form method="post">
+                     {% csrf_token %}
+                     <input value="ru" type="hidden" name="post_lang">
+                     <button value="ru" type="submit">RU</button>
+                 </form>
+
+                 <form method="post" style="display:none;">
+                     {% csrf_token %}
+                     <input value="auto" type="hidden" name="post_lang">
+                     <button value="auto" type="submit">auto</button>
+                 </form>
+             </div>
+         </div>
+         <!-------------------------------------------------- ------------------------->
+         <!-- Language change -->
+         <!-------------------------------------------------- ------------------------->
+         <span>
+             <a href="tel:89246263306"><img class="header_imgs" src="{% static 'Heat_Life/img/video-call.png' %}" /></a>
+         </span>
+         <span>
+             <a href='{% url 'coop' %}'><img class="header_imgs" src="{% static 'Heat_Life/img/coop.png' %}" /></a>
+         </span>
+         <span>
+             <a href="{% url 'feedback' %}"><img class="header_imgs" src="{% static 'Heat_Life/img/sup.png' %}" /></a>
+         </span>
+         <span>
+             <a id="menu_but"><img class="header_imgs" style="max-width: 38px; " src="{% static 'Heat_Life/img/menu.png' %}" onclick="open_menu()" /></a>
+         </span>
+     </div>
+</header>
+
+        <header class="pc_header">
+     <img src="{% static 'Heat_Life/img/LOGO_mini.png' %}" style="margin-right: 12px; margin-top: 4px; margin-bottom: 1px;" onclick="location.href='{% url 'Main_page'%}';" />
+     <div class="header_menu">
+
+         <div class="dropdown">
+             <button class="dropbtn">Information</button>
+             <div class="dropdown-content">
+
+                 <form action='{% url 'sauna'%}'>
+                     <button type="submit">infrared sauna</button>
+                 </form>
+
+                 <form action='{% url 'sush'%}'>
+                     <button type="submit">prod. drying</button>
+                 </form>
+
+                 <form action='{% url 'tepl'%}'>
+                     <button type="submit">Greenhouses</button>
+                 </form>
+             </div>
+         </div>
+         <div class="dropdown">
+             <button class="dropbtn">Products</button>
+             <div class="dropdown-content">
+
+                 <form action='{% url 'soon'%}'>
+                     <button type="submit">Products</button>
+                 </form>
+
+             </div>
+         </div>
+
+         <!-------------------------------------------------- ------------------------->
+         <button class="dropbtn" onclick="location.href='{% url 'News_page'%}';">News</button>
+         <button class="dropbtn" onclick="location.href='{% url 'faq'%}';">FAQ</button>
+         <button class="dropbtn" onclick="location.href='{% url 'rev' %}'">reviews</button>
+         <!-------------------------------------------------- ------------------------->
+         <!-- Language change -->
+         <!-------------------------------------------------- ------------------------->
+         <div class="dropdown_lang">
+             <button class="dropbtn_lang">EN</button>
+             <div class="dropdown-content_lang">
+                 <form method="post">
+                     {% csrf_token %}
+                     <input value="gr" type="hidden" name="post_lang">
+                     <button value="gr" type="submit">GR</button>
+                 </form>
+
+                 <form method="post">
+                     {% csrf_token %}
+                     <input value="en" type="hidden" name="post_lang">
+                     <button value="en" type="submit">EN</button>
+                 </form>
+
+                 <form method="post">
+                     {% csrf_token %}
+                     <input value="ru" type="hidden" name="post_lang">
+                     <button value="ru" type="submit">RU</button>
+                 </form>
+
+                 <form method="post" style="display:none;">
+                     {% csrf_token %}
+                     <input value="auto" type="hidden" name="post_lang">
+                     <button value="auto" type="submit">auto</button>
+                 </form>
+             </div>
+         </div>
+         <!-------------------------------------------------- ------------------------->
+         <!-- Language change -->
+         <!-------------------------------------------------- ------------------------->
+         <span>
+             <a href="tel:89246263306"><img class="header_imgs" src="{% static 'Heat_Life/img/video-call.png' %}" /></a>
+         </span>
+         <span>
+             <a href='{% url 'coop' %}'><img class="header_imgs" src="{% static 'Heat_Life/img/coop.png' %}" /></a>
+         </span>
+         <span>
+             <a href="{% url 'feedback' %}"><img class="header_imgs" src="{% static 'Heat_Life/img/sup.png' %}" /></a>
+         </span>
+     </div>
+     <form class="form_ser" method="get" action="{% url 'News_page_search' %}">
+         <input class="input_ser" type="search" placeholder="Search" name="q">
+         <button class="button_ser" type="submit"></button>
+     </form>
+</header>
+
+        <nav id="nv" style="display:none">
+             <div class="header_menu" style="display: flex; align-items: center; flex-direction: column;">
+
+     <div class="dropdown">
+         <button class="dropbtn">Information</button>
+         <div class="dropdown-content">
+
+             <form action='{% url 'sauna'%}'>
+                 <button type="submit">infrared sauna</button>
+             </form>
+
+             <form action='{% url 'sush'%}'>
+                 <button type="submit">prod. drying</button>
+             </form>
+
+             <form action='{% url 'tepl'%}'>
+                 <button type="submit">Greenhouses</button>
+             </form>
+         </div>
+     </div>
+     <div class="dropdown">
+         <button class="dropbtn">Products</button>
+         <div class="dropdown-content">
+
+             <form action='{% url 'soon'%}'>
+                 <button type="submit">Products</button>
+             </form>
+
+         </div>
+     </div>
+
+     <button class="dropbtn" onclick="location.href='{% url 'News_page'%}';">News</button>
+     <button class="dropbtn" onclick="location.href='{% url 'faq'%}';">FAQ</button>
+     <button class="dropbtn" onclick="location.href='{% url 'rev' %}'">reviews</button>
+
+</div>
+<form class="form_ser" method="get" action="{% url 'News_page_search' %}">
+     <input class="input_ser" type="search" placeholder="Search" name="q">
+     <button class="button_ser" type="submit"></button>
+</form>
+     </nav>
+
+    <main>
+{% block content_en %}
+        <article id="art_1" class="s1">
+
+           <section id="s_1_1">
+
+                 <div class="article_int_wrapper">
+                     <div class="art_over article_int">
+                         <button class="art_but_over article_int_button " onclick="change('#art_1', '#s_1_1')"><p>Welcome</p></button>
+                         <button class="art_but_over article_int_button " onclick="change('#art_1', '#s_1_2')"><p>Structure overview</p></button>
+                         <button class="art_but_over article_int_button " onclick="change('#art_1', '#s_1_3')"><p>Infrared floor</p></button>
+                     </div>
+                 </div>
+<div style="height: 100%;" class="a1">
+     <div class="s_1_1_text">
+         <p class="s_1_1_h">HIT LIFE LLC </p>
+         <p style="margin-left: 3%;">Exclusive distributor of HeatLife infrared heating film from the South Korean manufacturer Ondolia Co., LTD.</p>
+         <p style="margin-left: 1%;">Easy to use, compact heating system</p>
+         <p style="margin-left: 1%;">Millimeter-thick flexible heating elements release heat over the entire area due to the electrical conductivity of carbon fiber.</p>
+         <p style="margin-left: 1%;">The last word in space heating</p>
+
+
+
+     </div>
+
+                     <div class="for_img_wr">
+                         <div class="for_img">
+                             <div style=" position: relative; left: 101%; top: 14%;" class="a2">
+                                 <img src="{% static 'Heat_Life/img/plenka1_en.jpg' %}" style="width: 88%; " class="a3" />
+                             </div>
+                         </div>
+                     </div>
+</div>
+             </section>
+
+            <section id="s_1_2" style="display: none;">
+                 <div class="article_int_wrapper">
+                     <div class="art_over article_int">
+                         <button class="art_but_over article_int_button " onclick="change('#art_1', '#s_1_1')"><p>Welcome</p></button>
+                         <button class="art_but_over article_int_button " onclick="change('#art_1', '#s_1_2')"><p>Structure overview</p></button>
+                         <button class="art_but_over article_int_button " onclick="change('#art_1', '#s_1_3')"><p>Infrared floor</p></button>
+                     </div>
+                 </div>
+                 <div style="background-image: url(/static/Heat_Life/img/tfc.png);" class="layers"></div>
+
+                 <div class="layer" style="top: -70%; left: 2%; width: 20%; height: 48%;" id="layer1">
+                     <p style="margin-top: -9px;">
+HEALTH AND SAFETY.
+Maintains natural air humidity in the room and does not burn oxygen.
+
+Does not emit harmful electromagnetic radiation. It has a beneficial effect
+for humans, animals, plants
+(energy from the sun's rays).
+
+Has international safety certificates:
+ETL, ERI, UL, CE.
+                     </p>
+                 </div>
+
+                 <div class="layer" style=" top: -140%; left: 56.5%; width: 40%; height: 26.5%;" id="layer2">
+                     <p style="margin-top: -14px;">
+SAVING.
+Energy consumption from the heating element (film) is 10 W/m2.
+Simple and quick installation under any surface (ceramic tiles, laminate,
+even under the carpet).<span>No pipes, boilers or bulky radiators,
+as well as the problems that arise with them.
+In addition, the usable area of the room increases.
+Convective heating systems are 60% more economical.
+</span>
+</p>
+                 </div>
+
+                 <div class="layer" style="top: -131%; left: 71%; width: 25%; height: 29%; " id="layer3">
+                     <p style="margin-top: -20px;">
+NEW TECHNOLOGIES:
+Continuous heat transfer surface. Double carbon layer.
+Dense multi-layer structure
+Resistance to mechanical and other external influences.
+Long service life (30 years).
+High heat transfer rate. Wide range of applications.
+                     </p>
+                 </div>
+             </section>
+           
+            <section id="s_1_3" style="display:none">
+                 <div class="article_int_wrapper">
+                     <div class="art_over article_int">
+                         <button class="art_but_over article_int_button " onclick="change('#art_1', '#s_1_1')"><p>Welcome</p></button>
+                         <button class="art_but_over article_int_button " onclick="change('#art_1', '#s_1_2')"><p>Structure overview</p></button>
+                         <button class="art_but_over article_int_button " onclick="change('#art_1', '#s_1_3')"><p>Infrared floor</p></button>
+                     </div>
+                 </div>
+                 <div style="height:100%" class="kotic_wrapper">
+                     <div style="background-image: url(/static/Heat_Life/img/kotiki_en.jpg);" class="kotic_img"></div>
+
+                     <div style=" position: relative; top: -96%; left: 61%; width: 38%;" class="kotic_div">
+                         <h3 class="kotic_text">Infrared heating:</h3>
+                         <p class="kotic_text" id="kotic1">
+2–3 times more economical than an electric boiler, due to uniform heat distribution from bottom to top.
+It does not require maintenance or technical approval.
+You don't have to carry out complex repair work or call a specialist.
+                         </p>
+                     </div>
+
+                     <div style=" position: relative; top: -93%; left: 61%; width: 38%; height: 24%;" class="kotic_div" id="kotic_div2">
+                         <h3></h3>
+                         <p class="kotic_text">
+HitLife film, when covering 60 percent of the area, works as the main heating system.
+Cover 60% of the total area of the room with film and heat without radiators, boiler and pipes.
+The useful area of the room will increase and radiators will not spoil the interior.
+                         </p>
+                     </div>
+                 </div>
+             </section>
+        </article>
+
+        <article id="art_2">
+            <section id="s_2_1">
+                 <div class="article_int_wrapper">
+                     <div class="article_int_light">
+<button class="article_int_button_light" style=" border-left: 4px #ffc10763 solid;" onclick="change('#art_2', '#s_2_1')"><p>Service</p></button>
+<button class="article_int_button_light" style=" border-left: 2px #ffc10763 solid; border-right: 2px #ffc10763 solid;" onclick="change('#art_2', '#s_2_2')"><p>about production</p></button>
+<button class="article_int_button_light" style="border-right: 4px #ffc10763 solid;" onclick="change('#art_2', '#s_2_3')"><p>Activity</p></button>
+                     </div>
+                 </div>
+
+                 <div style="background-image: url(/static/Heat_Life/img/back3.png);" class="installation">
+                     <div class="sec2_installation1">
+                         <h2 style="font-size: 28px;" id="M21h1">We will help with any question</h2>
+                         <p class="installation_p1">
+Don't be afraid to ask for advice!
+
+What primer and glue should I choose to lay tiles on film?
+
+Do I need to ground the screed and what kind of waterproofing should I choose?
+
+Is linoleum suitable for heated floors?
+
+If you have any questions, call us and we’ll tell you the details. Do not be shy.
+                         </p>
+                     </div>
+
+                     <div class="sec2_installation2">
+                         <h2 style="font-size: 30px;" id="M21h2">We will do high-quality installation of floors</h2>
+                         <p class="installation_p2">
+A team of installers will come to you and complete everything turnkey:
+will lay and glue the film, solder and lay the wires, connect the thermostats and check that everything works.
+<br class="br_fix" /> <br class="br_fix" />
+The team will install the heated floor in a couple of hours, and the heating in the cottage in a day.
+Installation will cost 10-20% of the cost of heated floor materials.
+You receive a three-year warranty on installation and underfloor heating.
+If something breaks, we will come and replace it under warranty.
+(36 Months Warranty)
+                         </p>
+                     </div>
+                 </div>
+
+             </section>
+
+            <section id="s_2_2" style="display:none">
+
+                 <div class="article_int_wrapper">
+                     <div class="article_int_light">
+<button class="article_int_button_light" style=" border-left: 4px #ffc10763 solid;" onclick="change('#art_2', '#s_2_1')"><p>Service</p></button>
+<button class="article_int_button_light" style=" border-left: 2px #ffc10763 solid; border-right: 2px #ffc10763 solid;" onclick="change('#art_2', '#s_2_2')"><p>about production</p></button>
+<button class="article_int_button_light" style="border-right: 4px #ffc10763 solid;" onclick="change('#art_2', '#s_2_3')"><p>Activity</p></button>
+                     </div>
+                 </div>
+
+                 <div style="background-image: url(/static/Heat_Life/img/zovod_f.png);" class="proizvod">
+                     <div class="sec2_installation1" style="width: 97%; height: 55%; background-color: #000000a1;" id="sec2_installation1_1">
+                         <h2 style="font-size: 28px;">About production</h2>
+                         <p class="installation_p2" style="margin-top: -25px; font-size: 21px; " id="installation_p2_1">
+The production process for heatlife films is complex and includes several technological steps that are carefully controlled by plant personnel.
+The main production line is fully automated, with personnel supervising production.
+
+The main components of "heatlife" films are two heating carbon layers, which gradually impregnate the non-woven material.
+After the first layer has dried, a second layer of carbon is applied to ensure better quality and durability of the films.
+Protective layers are also applied, making the “heatlife” film resistant to mechanical damage.
+
+For the film "heatlife" hl-220/m2 (with grounding), the manufacturing process is more complicated, since it is necessary to apply a special layer to relieve static voltage and glue in an additional copper grounding bus.
+
+                         </p>
+                     </div>
+
+                     <div class="sec2_installation1" style="width: 97%; height: 30%; background-color: #000000a6;" id="sec2_installation1_2">
+                         <h2 style="font-size: 28px;">New production line</h2>
+                         <p class="installation_p1" id="installation_p1_2">
+The launch of a modernized production line ensures the production of the latest types of HeatLife films.
+The most modern and efficient equipment has made it possible to reduce the production time of film products
+and create cheaper types of films by optimizing technological processes.
+At the same time, the quality and reliability of these films remains at the same high level.
+                         </p>
+                     </div>
+                 </div>
+
+             </section>
+            
+            <section id="s_2_3" style="display:none">
+                 <div class="article_int_wrapper">
+                     <div class="article_int_light">
+                         <button class="article_int_button_light" style=" border-left: 4px #ffc10763 solid;" onclick="change('#art_2', '#s_2_1')"><p>Service</p></button>
+                         <button class="article_int_button_light" style=" border-left: 2px #ffc10763 solid; border-right: 2px #ffc10763 solid;" onclick="change('#art_2', '#s_2_2')"><p>about production</p></button>
+                         <button class="article_int_button_light" style="border-right: 4px #ffc10763 solid;" onclick="change('#art_2', '#s_2_3')"><p>Activity</p></button>
+                     </div>
+                 </div>
+
+                 <div id="profile" class="proizvod">
+                     <div style="width: 48%; height: 93%; background-color: #0000006b; margin-left: 3.5%; margin-top: 1%;" id="prof1">
+                         <h2></h2>
+                         <p class="installation_p1">
+<b style="
+     font-size: 22px;
+     color: #f7d364;
+">◉</b> Manufacturers of infrared heating film “HeatLife”
+     (South Korea)
+     were able to implement the most advanced
+     technologies of our time.
+
+    
+<b>◒</b> Infrared heating film “HeatLife”
+     is a leader among similar
+     products from other manufacturers.
+     Ondolia products are supplied
+     to the markets of the USA, China and Japan.
+
+    
+<b>◒</b> HeatLife heating system is a product that
+     for the first time in the world, maximized thermal efficiency,
+     has a patent for the thermal surface.
+
+    
+<b>◒</b>To release heat from the entire heating surface
+     films using the method of continuous carbon fiber coating,
+     use of highly insulated carbon conductor
+     (carbon) gives reflective (ray) infrared
+     heat radiation (sun effect)
+                         </p>
+                     </div>
+
+                     <div style="width: 43%; height: 52%; background-color: #00000070; margin-left: 3.7%; margin-top: 1%;" id="prof2">
+                         <h2>Activity profile</h2>
+                         <p class="installation_p2">
+Floor heating is far from the only service
+which is provided by HeatLife.
+The list of proposals also includes:
+installation of infrared saunas,
+industrial drying systems for products,
+installation of greenhouses, etc.
+                         </p>
+                     </div>
+                 <div class="df_m"></div>
+                 </div>
+                 <div class="df" ></div>
+             </section>
+        </article>
+
+        <article id="art_3">
+            
+            <section id="s_3_1">
+
+                <div class="article_int_wrapper">
+                    <div class="article_int">
+                        <button class="article_int_button" onclick="change('#art_3', '#s_3_1')" style=" white-space: pre-wrap;"><p> Integration <b> : </b></ p></button>
+                        <button class="article_int_button" onclick="change('#art_3', '#s_3_2')" style=" white-space: pre-wrap;"><p> Film review <b> : </b> </p></button>
+                    </div>
+                </div>
+
+                <h2 class="s_1_3_h">Suitable for any hard surface</h2>
+                <div class="s_1_3_spisok">
+                    <div class="s_1_3_podspisok" style="border-right: 3px #FFC107 dotted !important;">
+                        <div>
+                            <p style="font-weight: 600;">Warm floor under laminate, board </p>
+                            <p style="white-space: pre-wrap;">
+A heat-reflecting substrate is laid on the subfloor, and the heating film is glued.
+
+The laminate is assembled directly onto the heating film. No additional laminate underlay is needed.
+
+It is convenient to use heated floors in a wooden house or cottage.
+                            </p>
+                        </div>
+                        <img src="{% static 'Heat_Life/img/1floor.jpg' %}" style=" width: 62%; margin-left: 112px;" />
+                    </div>
+
+                    <div class="s_1_3_podspisok">
+                        <p style="font-weight: 600;">Warm floor under plywood, linoleum, tiles, OSB, GVL.</p>
+                        <p>Under plywood or OSB - if you want to lay carpet or linoleum.</p>
+                        <p>Under the gypsum plasterboard, if you want to lay tiles, but you are not going to lay the screed. It is convenient to use heated floors in the country house.</p>
+                        <img src="{% static 'Heat_Life/img/2floor.jpg' %}" style=" width: 62%; margin-left: 112px;" />
+                    </div>
+
+                    <div class="s_1_3_podspisok" style="border-left: 3px #FFC107 dotted !important;">
+                        <p style="font-weight: 600;"> Under screed, self-leveling floor</p>
+                        <p>The film is inserted into a polyethylene sleeve and taped to the backing. The top is filled with screed.</p>
+                        <p>The screed should be poured with a thickness of at least 4 centimeters to avoid cracking - the substrate shrinks slightly.</p>
+                        <p>It is convenient to use heated floors in a private home.</p>
+                        <img src="{% static 'Heat_Life/img/3floor.jpg' %}" style=" width: 62%; margin-left: 112px;" />
+                    </div>
+                </div>
+            </section>
+                     
+            <section id="s_3_2" style="display:none">
+
+     <div class="article_int_wrapper">
+         <div class="article_int">
+             <button class="article_int_button" onclick="change('#art_3', '#s_3_1')"><p><p> Integration <b> : </b></p></button>
+             <button class="article_int_button" onclick="change('#art_3', '#s_3_2')"><p><p> Film review <b> : </b> </p></button>
+         </div>
+     </div>
+     <div style="height:100%" id="f1">
+         <div id="1_1_text" class="s_text">
+             <h3 style="border-bottom: 5px #FFC107 dashed !important; width: 46%;">Infrared heated floor "HitLife"</h3>
+             <p>Heatlife warm floor is a heating film less than a millimeter thick. </p>
+             <p>This warm floor is laid directly under the floor covering: laminate, parquet, linoleum, screed or tile. </p>
+             <p>The film heats up the finishing coating and turns the floor into a large low-temperature battery.</p>
+             <p>Such a warm floor is convenient and profitable to use in a private house, apartment, cottage and country house.</p>
+         </div>
+
+         <div class="tezis">
+             <p id="tezis_1p1">Main points:</p>
+             <p id="tezis_1p2">Has a high degree of versatility <b style="font-size: 35px; color: #FFC107;" class="size_fix">---</b> </p>
+             <p id="tezis_1p3">Easy to use due to the user-friendly interface <b style="font-size: 35px; color: #FFC107;" class="size_fix">---</b></p>
+             <p id="tezis_1p4">Infrared film brings benefits of up to 20 times compared to outdated analogues <b style="font-size: 35px; color: #FFC107;" class="size_fix">---</b></p>
+         </div>
+
+         <div class="vid_pos_wrapper">
+             <div class="vid_pos">
+                 <p style="font-size: 16px; font-family: arial; font-weight: bold;">
+                     Video review
+                 </p>
+                 <iframe class="size2" width="560" height="315" src="https://www.youtube.com/watch?v=mmBEZ3x-QR%EF" title="YouTube video player" frameborder="0"
+                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+             </div>
+         </div>
+     </div>
+     <div class="box">
+         <div class="wrapper">
+         </div>
+     </div>
+</section>
+        </article>
+
+        <article id="art_4">
+
+            <section id="s_4_1">
+                 <div class="article_int_wrapper">
+                     <div class="article_int_light">
+                         <button class="article_int_button_light" style=" border-left: 4px #ffc10763 solid;" onclick="change('#art_4', '#s_4_1')"><p>Device</p></button>
+                         <button class="article_int_button_light" style=" border-left: 2px #ffc10763 solid; border-right: 2px #ffc10763 solid;" onclick="change('#art_4', '#s_4_2')"><p>Operation principle</p></button>
+                         <button class="article_int_button_light" style="border-right: 4px #ffc10763 solid;" onclick="change('#art_4', '#s_4_3')"><p>What you need for work</p></button>
+                     </div>
+                 </div>
+<div style="height:100%" class="home_text a4">
+                 <div style="background-image: url(/static/Heat_Life/img/home1_e.png); width: 62.3%;" class="final final_i1"></div>
+                 <h2 id="a4s1_h1">No batteries</h2>
+                 <h2 id="a4s1_h2">Safe</h2>
+                 <h2 id="a4s1_h3">Control</h2>
+                 <h2 id="a4s1_h4">Heating system "HEATLIFE"</h2>
+                 <p id="a4s1_p1">
+You won't need any more
+bulky radiators or
+useless batteries.
+They only heat the air
+(bad coolant) and
+create a temperature difference
+as well as drafts, which
+lead to illness and
+the occurrence of mold.
+                 </p>
+                 <p id="a4s1_p2">
+The structure of the heating element itself
+protects it from mechanical damage,
+corrosion and oxidation.
+Carbon fiber is used in the design - this
+prevents fire and short
+short circuit
+                 </p>
+                 <p id="a4s1_p3">
+Temperature selectable
+thermostats.
+Can be customized
+individually for
+each room.
+                 </p>
+                 <p id="a4s1_p4">
+Fits into floors, walls or mounts
+on the ceiling and consists of 2 working, 10 protective
+layers and conductive bus.
+                 </p>
+</div>
+
+<div style="height:100%" class="home_text a4">
+
+</div>
+</section>
+
+            <section id="s_4_2" style="display:none">
+<div class="article_int_wrapper">
+    <div class="article_int_light">
+        <button class="article_int_button_light" style=" border-left: 4px #ffc10763 solid;" onclick="change('#art_4', '#s_4_1')"><p>Device</p></button>
+        <button class="article_int_button_light" style=" border-left: 2px #ffc10763 solid; border-right: 2px #ffc10763 solid;" onclick="change('#art_4', '#s_4_2')"><p>Operation principle</p></button>
+        <button class="article_int_button_light" style="border-right: 4px #ffc10763 solid;" onclick="change('#art_4', '#s_4_3')"><p>What you need for work</p></button>
+    </div>
+</div>
+<div style="height:100%" class="home_text a4">
+    <div style="background-image: url(/static/Heat_Life/img/home2_e.png); height: 70%; " class="final final_i2"></div>
+    <h2 id="a4s2_h1">Economical heating</h2>
+    <h2 id="a4s2_h2">Even heating</h2>
+    <h2 id="a4s2_h3">Heating due to infrared rays</h2>
+
+    <p id="a4s2_p1">
+Consumes from 8 to 40 W/m2.
+Convectors and oil
+radiators consume
+from 10 times more.
+
+Calculate heating cost
+thanks to the Hilife™ system
+Just. For heating 100 sq.m.
+costs 3 rubles per hour. This is total
+only 2000 rubles per month.
+    </p>
+    <p id="a4s2_p2">
+Heating the same area
+using traditional
+there will be an electric boiler
+cost at least 18,000
+rubles per month.
+    </p>
+    <p id="a4s2_p3">
+The working layer produces infrared radiation
+range close to sunlight. Rays
+do not warm the air, but immediately “settle”
+on the human body and objects.
+    </p>
+    <p id="a4s2_p4">
+The system does not create hot
+and cold zones, does not burn
+oxygen and does not dry out the air.
+Prevents
+mold formation.
+    </p>
+</div>
+            </section>
+
+            <section id="s_4_3" style="display:none">
+    <div class="article_int_wrapper">
+        <div class="article_int_light">
+            <button class="article_int_button_light" style=" border-left: 4px #ffc10763 solid;" onclick="change('#art_4', '#s_4_1')"><p>Device</p></button>
+            <button class="article_int_button_light" style=" border-left: 2px #ffc10763 solid; border-right: 2px #ffc10763 solid;" onclick="change('#art_4', '#s_4_2')"><p>Operation principle</p></button>
+            <button class="article_int_button_light" style="border-right: 4px #ffc10763 solid;" onclick="change('#art_4', '#s_4_3')"><p>What you need for work</p></button>
+        </div>
+    </div>
+    <div style="height:100%" class="home_text a4">
+        <div style="background-image: url(/static/Heat_Life/img/home3_e.png);" class="final final_i3"></div>
+        <h2 id="a4s3_h1">Does not require maintenance</h2>
+        <h2 id="a4s3_h2">Under any coating</h2>
+        <h2 id="a4s3_h3">Only 220V required</h2>
+
+        <p id="a4s3_p1">
+We guarantee more than
+30 years of trouble-free operation.
+
+Doesn't light up, even works
+with damage.
+        </p>
+        <p id="a4s3_p2">
+Heating element "Heatlife"™
+mounted in the floor and walls for any
+covering and is also mounted on the ceiling.
+
+Can even be laid under reinforced concrete
+18 cm thick. For heating you will need
+cover 50–70% of the room area.
+        </p>
+        <p id="a4s3_p3">
+Required for operation
+connection to the electrical network
+and thermostats.
+
+Installation time – from 1 d.
+        </p>
+        <p id="a4s3_p4">
+If something stops
+we work at our own expense
+dismantling the floor
+we will repair and
+install again.
+        </p>
+    </div>
+            </section>
+        </article>
+
+        <aside>
+            <div style="background-color: orange; width: 50px; height: 0px; position: absolute; z-index:-1;" id="myBar">
+
+            </div>
+            <div class="transparent-container clearfix">
+                <div class="fixed-holder"><div class="fixed-div" onclick="sc('art_1')"></div></div>
+                <div class="fixed-holder"><div class="fixed-div" onclick="sc('art_2')"></div></div>
+                <div class="fixed-holder"><div class="fixed-div" onclick="sc('art_3')"></div></div>
+                <div class="fixed-holder"><div class="fixed-div" onclick="sc('art_4')"></div></div>
+            </div>
+        </aside>
+{% endblock %}
+    <footer>
+     <div class="footer_sec">
+         <h3>Contacts</h3>
+         <a>+357 96 578760</a>
+         <a>+357 99 951563</a>
+         <a>svheatlife@gmail.com</a>
+     </div>
+
+     <div class="footer_sec" style="width: 26%;">
+         <h3>Latest news</h3>
+         {% for el in NEW %}
+         <div>
+             <h2 class="one_block_name" style="font-size: 16px; margin-bottom: 17px; font-family: monospace; color: #372c2cc2; ">{{ el.name }}</h2>
+             <div style="background-image: url('../../../{{el.preview}}'); height: 133px; background-size: contain; background-repeat: no-repeat; " class="shad_img"></div>
+             <a href="{%url 'News_dv' el.id%}" style="text-decoration: none;">Watch in full</a>
+         </div>
+         {% endfor %}
+     </div>
+</footer>
+    </main>
+    
+
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <style>
+        @media screen and (min-width: 525px) { /*ПКШНАЯ*/
+            .nav{
+                display:none;
+            }    
+
+            .mobile_header{
+                display:none;
+            }
+
+            .df_m{display:none}
+            .df {
+                background-image: url(/static/Heat_Life/img/dm_f_en.png);
+                position: relative;
+                height: 38%;
+                width: 42%;
+                top: -41%;
+                left: 54%;
+                background-size: cover;
+                background-color: #0000007d;
+            }
+
+            #profile {
+                background-image: url(/static/Heat_Life/img/final_blur.png);
+                width: 95%;
+                margin-left: 2%;
+                top: 0%;
+                display: flex;
+                flex-direction: row;
+            }
+
+            .final {
+                width: 65%;
+                height: 73%;
+                margin-left: 20%;
+                top: 5%;
+                position: relative;
+            }
+
+            .home_text h2 {
+                position: relative;
+                color: white;
+                font-family: arial;
+                font-weight: 100;
+            }
+
+            .home_text p {
+                position: relative;
+                font-size: 17px;
+                color: #362a2e;
+                font-family: arial;
+                font-weight: 100;
+                white-space: pre-wrap;
+                width: fit-content;
+            }
+
+            #a4s1_h1 {top: -65% !important; left: 21.2%  !important;font-size: 22px;}
+            #a4s1_h2 { top: -30%  !important;left: 31.2%  !important;font-size: 22px;}
+            #a4s1_h3 {top: -61% !important;left: 71% !important;font-size: 20px;}
+            #a4s1_h4 {top: -37.5%  !important;left: 58.2%  !important;font-size: 21px;}
+            #a4s1_p1 {top: -83% !important; left: 21.2%  !important; font-size: 17px;}
+            #a4s1_p2 {top: -73%  !important;left: 31.2%  !important;font-size: 17px;}
+            #a4s1_p3 {top: -123%  !important;left: 69.2%  !important;font-size: 17px;}
+            #a4s1_p4 {top: -116%  !important;left: 59.2%  !important;font-size: 17px;}
+
+            #a4s2_h1 {top: -62% !important;left: 21.5% !important;font-size: 22px !important;}
+            #a4s2_h2 {top: -68.5% !important;left: 67.5% !important;font-size: 22px !important;}
+            #a4s2_h3 {top: -28.5% !important;left: 49% !important;font-size: 22px !important;}
+            #a4s2_p1 {top: -77% !important;left: 21.5% !important;font-size: 17px !important;}
+            #a4s2_p2 {top: -82% !important;left: 21.7% !important;font-size: 17px !important;}
+            #a4s2_p3 {top: -87% !important;left: 49.5% !important;font-size: 18px !important;}
+            #a4s2_p4 {top: -148% !important;left: 70.5% !important;font-size: 18px !important;}
+
+
+            #a4s3_h1 {top: -66% !important;left: 21.5% !important;font-size: 22px !important;}
+            #a4s3_h2 {top: -28% !important;left: 27.5% !important;font-size: 22px !important;}
+            #a4s3_h3 {top: -35.5% !important;left: 58% !important;font-size: 21px !important;}
+            #a4s3_p1 {top: -79% !important;left: 21.5% !important;font-size: 18px !important;}
+            #a4s3_p2 {top: -58.2% !important;left: 28% !important;font-size: 18px !important;}
+            #a4s3_p3 {top: -87.5% !important;left: 60% !important;font-size: 17px !important;}
+            #a4s3_p4 {top: -140% !important;left: 70.5% !important;font-size: 17px !important;}
+                
+            .kotic_text {
+                white-space: pre-wrap;
+                font-family: arial;
+                font-size: 20px;
+                color: #362a2e;
+                margin-left: 10px;
+                line-height: 25px;
+            }
+
+            .kotic_img {
+                background-image: url(/static/Heat_Life/img/kotiki_en.jpg);
+                width: 57%;
+                height: 96%;
+                background-size: contain;
+                top: -12%;
+                z-index: -1;
+                left: 1%;
+                margin-left: 1%;
+                display: flex;
+                position: relative;
+            }
+
+            .kotic_div {
+                position: relative;
+                top: -96%;
+                left: 61%;
+                width: 38%;
+                border-left: 3px #FFC107 dotted !important;
+            }
+
+            section {
+                opacity: 0;
+                animation: ani 1.0s forwards;
+            }
+
+            @keyframes ani {
+                0% {
+                    opacity: 0;
+                }
+
+                100% {
+                    opacity: 1;
+                }
+            }
+
+            .proizvod {
+                background-image: url(/static/Heat_Life/img/zovod_f.png);
+                top: 1%;
+                height: 93%;
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                width: 98%;
+                margin-left: 1%;
+                position: relative;
+            }
+
+                .proizvod h2 {
+                    font-weight: 400;
+                    font-family: system-ui;
+                    color: white;
+                    margin-left: 11px;
+                }
+
+            .layers {
+                height: 100%;
+                width: 90%;
+                background-size: contain;
+                top: -13%;
+                left: 9%;
+                z-index: -1;
+                margin-left: 1%;
+                display: flex;
+                position: relative;
+            }
+
+            .layer {
+                position: relative;
+                box-shadow: 4px 0px 14px #ffa549;
+            }
+
+                .layer p {
+                    white-space: pre-wrap;
+                    font-weight: 400;
+                    font-size: 16px;
+                    font-family: Verdana;
+                    color: #777777;
+                    line-height: 23px;
+                    margin-left: 5px;
+                    position: absolute;
+                }
+
+            .installation {
+                height: 90%;
+                position: relative;
+                top: 1%;
+                width: 98%;
+                margin-left: 1%;
+                display: flex;
+            }
+
+            .installation_p1 {
+                white-space: pre-wrap;
+                font-weight: 400;
+                font-size: 19px;
+                font-family: Verdana;
+                color: white;
+                margin-left: 11px;
+                margin-top: -25px;
+            }
+
+            .installation_p2 {
+                white-space: pre-wrap;
+                font-weight: 500;
+                font-size: 22px;
+                font-family: system-ui;
+                color: white;
+                margin-left: 11px;
+            }
+
+            .installation h2 {
+                font-weight: 400;
+                font-family: system-ui;
+                color: white;
+                margin-left: 11px;
+            }
+
+            .sec2_installation1 {
+                width: 29%;
+                height: 92%;
+                background-color: #0000006b;
+                margin-left: 1.5%;
+                margin-top: 2%;
+            }
+
+            .sec2_installation2 {
+                width: 78%;
+                height: 92%;
+                background-color: #00000070;
+                margin-left: 4%;
+                margin-right: 1.5%;
+                margin-top: 2%;
+            }
+
+            .article_int_light {
+                width: 54%;
+                margin-left: 24%;
+                margin-top: 1%;
+                border-bottom: 0px #ffc10763 double;
+                height: 50px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+            }
+
+            .article_int_button_light {
+                background-color: #F9F0DA;
+                border-radius: 0px;
+                width: 33%;
+                margin-left: 20px;
+                color: #777777;
+                margin-right: 10px;
+                margin-bottom: 2%;
+                font-size: 16px;
+                border: none;
+                max-height: 93%;
+            }
+
+
+            .header_imgs {
+                max-width: 65px;
+                margin-left: 1px;
+            }
+
+            footer {
+                display: flex;
+                position: relative;
+                margin-top: -2.5%;
+                flex-direction: row;
+                border-top: 1px dashed #9E9E9E;
+                justify-content: space-evenly;
+            }
+
+            .footer_sec {
+                display: flex;
+                flex-direction: column;
+                margin-left: 20px;
+                font-size: 19px;
+            }
+
+            footer a {
+                margin-bottom: 20px;
+                font-family: monospace;
+                color: #372c2cc2;
+            }
+
+            footer h3 {
+                margin-bottom: 20px;
+                font-family: monospace;
+                color: #FF5722;
+                text-decoration: underline;
+            }
+
+            #s_1_3 img {
+                width: 62%;
+                margin-left: 112px;
+            }
+
+            .s_1_3_spisok {
+                display: flex;
+            }
+
+            .s_1_3_podspisok {
+                margin-left: 17px;
+            }
+
+                .s_1_3_podspisok p {
+                    width: 97%;
+                    font-family: arial;
+                    font-size: 18px;
+                    color: #362a2e;
+                    margin-left: 10px;
+                }
+
+            .s_1_3_h {
+                border-bottom: 3px #ffd391 dashed !important;
+                width: 29% !important;
+                font-family: arial !important;
+                font-size: 22px !important;
+                margin-left: 38% !important;
+                color: #362a2e !important;
+                margin-top: 1%;
+            }
+
+            .form_ser {
+                position: relative;
+                width: 300px;
+                margin: 21px 12px;
+            }
+
+            .input_ser {
+                width: 100%;
+                height: 45px;
+                padding-left: 10px;
+                border: 2px solid #ffc10763;
+                border-radius: 5px;
+                outline: none;
+                background: #F9F0DA;
+                color: #9E9C9C;
+            }
+
+            .button_ser {
+                position: absolute;
+                left: 258px;
+                top: 2px;
+                width: 40px;
+                height: 38px;
+                border: none;
+                background: #F9F0DA;
+                border-radius: 0 5px 5px 0;
+                cursor: pointer;
+            }
+
+                .button_ser:before {
+                    content: "\f002";
+                    font-family: FontAwesome;
+                    font-size: 16px;
+                    color: #362a2e;
+                }
+
+            .s_1_1_h {
+                border-bottom: 5px #ffd391 dashed !important;
+                width: 17% !important;
+                font-family: arial !important;
+                font-size: 22px !important;
+                margin-left: 38% !important;
+                color: white !important;
+            }
+
+            .s_1_1_text {
+                width: 53%;
+                background-color: #0000003b;
+                margin-top: -104px;
+            }
+
+                .s_1_1_text p {
+                    width: 97%;
+                    font-family: arial;
+                    font-size: 20px;
+                    color: white;
+                }
+
+            /*.for_img {
+            margin: 50px auto;
+            background-image: url(/static/Heat_Life/img/sunset1.jpg);
+            height: 100%;
+            width: 100%;
+            transform: skewY(-185deg);
+        }*/
+
+            /*.for_img_wr {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 568px;
+            transform: skewY(-3deg);
+            top: -35%;
+            position: relative;
+            z-index: -1;
+        }*/
+            .for_img {
+                margin: 50px auto;
+                background-image: url(/static/Heat_Life/img/sunset1.jpg);
+                height: 100%;
+                width: 100%;
+                transform: skewY(0deg);
+            }
+
+            .for_img_wr {
+                content: '';
+                display: block;
+                width: 53%;
+                height: 800px;
+                transform: skewY(0deg);
+                top: -46%;
+                position: relative;
+                z-index: -1;
+            }
+
+            .box {
+                background-color: #87ceeb00;
+                margin-top: -35%;
+                padding: 0.2% 20px;
+                transform: skewY(0deg);
+                box-shadow: 10px 3px 5px #FF9800;
+            }
+
+                .box > .wrapper {
+                    -webkit-transform: skewY(5deg);
+                    transform: skewY(5deg);
+                }
+
+
+            html {
+                height: 390%;
+            }
+
+            body {
+                width: 100%;
+                height: 45%;
+            }
+
+            header {
+                width: 101%;
+                display: flex;
+                justify-content: center;
+                position: fixed;
+                top: 0px;
+                left: -7px;
+                height: 81px;
+                z-index: 99;
+            }
+
+            .header_menu {
+                display: flex;
+                align-items: center;
+            }
+
+            .header__color {
+                background: #ffffff;
+                box-shadow: 10px 5px 5px #ffa549;
+            }
+            /*-------------------------------------------------------------*/
+
+            aside {
+                position: fixed;
+                bottom: 40%;
+                left: 1%;
+                height: 173px;
+            }
+
+            .transparent-container {
+                display: flex;
+                padding: 5px;
+                color: #ffffff;
+                width: 400px;
+                flex-direction: column;
+            }
+
+            .fixed-holder {
+                overflow: hidden;
+                width: 48px;
+                height: 41px;
+                margin: 0px;
+                padding: 0;
+                border: 0;
+            }
+
+            .fixed-div {
+                box-shadow: 0 0 0 500px #ffffff;
+                margin: 12px;
+                border-radius: 50%;
+                border: solid 1px #ed600096;
+                text-align: center;
+                padding: 8px;
+                width: 7px;
+                height: 7px;
+            }
+
+
+            /*-------------------------------------------------------------*/
+            main {
+                height: 70%;
+                width: 100%;
+                margin-top: 7%;
+            }
+
+            article {
+                height: fit-content;
+                width: 98%;
+            }
+
+
+            .article_int_wrapper {
+            }
+
+            .article_int {
+                position: relative;
+                height: 7%;
+                border-bottom: 8px #FFC107 double;
+                width: 23%;
+                margin-left: 41%;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                margin-top: 1%;
+            }
+
+            .art_over {
+                /* border-bottom: 8px #00BCD4 double; */
+                margin-left: 59% !important;
+                width: 36%;
+                display: flex;
+            }
+
+            .art_but_over {
+                background-color: #ed6000b8 !important;
+                margin-top: 1%;
+                margin-right: 10px;
+                background-color: #ed6000;
+                color: white;
+                /* padding: 16px; */
+                margin-bottom: 2%;
+                height: 52px;
+                width: 160px;
+                display: flex;
+                font-size: 16px;
+                border: none;
+                max-height: 93%;
+                border-radius: 5px;
+                align-items: center;
+                justify-content: space-around;
+            }
+
+            .article_int_button {
+                margin-right: 10px;
+                background-color: #ed6000;
+                color: white;
+                /* padding: 16px; */
+                margin-bottom: 2%;
+                font-size: 16px;
+                border: none;
+                max-height: 93%;
+                border-radius: 10px;
+            }
+
+            section {
+                border: 4px #ed600000 solid;
+                height: 741px;
+                width: 1550px;
+                box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
+                border-radius: 130px;
+                margin-bottom: 4%;
+                overflow: hidden;
+                margin-left: 5%;
+            }
+
+            .s_text {
+                color: #362a2e;
+                font-size: 18px;
+                margin-left: 2%;
+                border-left: 8px #FFC107 double !important;
+                padding-left: 10px;
+            }
+
+                .s_text p {
+                    font-family: arial;
+                }
+
+            .tezis {
+                width: 47%;
+                position: relative;
+                top: 9%;
+                left: 11%;
+                border-radius: 11px;
+                color: #362a2e;
+                font-size: 18px;
+            }
+
+            #tezis_1p1 {
+                width: 184px;
+                font-weight: bold;
+                font-size: 22px;
+                margin-left: 76%;
+                border-bottom: 5px #FFC107 dashed !important;
+            }
+
+            #tezis_1p2 {
+                margin-left: 58%;
+                font-size: 19px;
+                font-family: arial;
+            }
+
+            #tezis_1p3 {
+                margin-left: 42%;
+                font-size: 19px;
+                font-family: arial;
+            }
+
+            #tezis_1p4 {
+                margin-left: 3.5%;
+                font-size: 19px;
+                font-family: arial;
+            }
+
+            .vid_pos {
+                border-left: 8px #FFC107 double !important;
+                padding: 0px;
+                padding-left: 10px;
+            }
+
+
+            .vid_pos_wrapper {
+                width: 47%;
+                position: relative;
+                top: -21%;
+                left: 59%;
+                border-radius: 11px;
+            }
+            /*-------------------------------------------------------------*/
+            .dropbtn_lang {
+                background-color: #ed6000;
+                color: white;
+                padding: 16px;
+                font-size: 17px;
+                border: none;
+                margin-top: 5px;
+                margin-left: 1px;
+            }
+
+            /* Контейнер <div> - необходим для размещения выпадающего содержимого */
+            .dropdown_lang {
+                position: relative;
+                display: inline-block;
+            }
+
+            /* Выпадающее содержимое (скрыто по умолчанию) */
+            .dropdown-content_lang {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                width: 100%;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+                /* Ссылки внутри выпадающего списка */
+                .dropdown-content_lang button {
+                    color: #362a2e;
+                    font-family: "Roboto";
+                    font-weight: bolder;
+                    padding: 12px 16px;
+                    text-decoration: none;
+                    display: block;
+                    width: 100%;
+                    text-align: left;
+                    background-color: transparent;
+                    border-color: transparent;
+                    margin-left: 1px;
+                }
+
+                    /* Изменение цвета выпадающих ссылок при наведении курсора */
+                    .dropdown-content_lang button:hover {
+                        background-color: #ddd;
+                    }
+
+            /* Показать выпадающее меню при наведении курсора */
+            .dropdown_lang:hover .dropdown-content_lang {
+                display: block;
+            }
+
+            /* Изменение цвета фона кнопки раскрывающегося списка при отображении содержимого раскрывающегося списка */
+            .dropdown_lang:hover .dropbtn_lang {
+                background-color: #f3741c;
+            }
+            /*-------------------------------------------------*/
+
+            /* Кнопка выпадающего списка */
+            .dropbtn {
+                background-color: #ed6000;
+                color: white;
+                padding: 16px;
+                font-size: 17px;
+                border: none;
+                max-height: 90%;
+                margin-left: 1px;
+                transition-duration: 0.4s;
+                margin-top: 5px;
+            }
+
+                .dropbtn:hover {
+                    background-color: #ed6000a6;
+                    color: white;
+                }
+
+            /* Контейнер <div> - необходим для размещения выпадающего содержимого */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            /* Выпадающее содержимое (скрыто по умолчанию) */
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                width: 100%;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+                /* Ссылки внутри выпадающего списка */
+                .dropdown-content button {
+                    color: #362a2e;
+                    font-weight: bolder;
+                    padding: 12px 16px;
+                    text-decoration: none;
+                    display: block;
+                    width: 100%;
+                    text-align: left;
+                    background-color: transparent;
+                    border-color: transparent;
+                }
+
+                    /* Изменение цвета выпадающих ссылок при наведении курсора */
+                    .dropdown-content button:hover {
+                        background-color: #ddd;
+                    }
+
+            /* Показать выпадающее меню при наведении курсора */
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            /* Изменение цвета фона кнопки раскрывающегося списка при отображении содержимого раскрывающегося списка */
+            .dropdown:hover .dropbtn {
+                background-color: #ed6000;
+            }
+
+            /*
+        font-family: "PT Sans Narrow";
+        font-weight: normal;
+
+        font-family: "Roboto";
+        font-weight: 500;
+        */
+        }
+
+        @media screen and (max-width: 525px) { /*МОБИЛЬНАЯ*/
+
+            footer h2 {
+                font-size: 16px;
+                margin-bottom: 17px;
+                font-family: monospace;
+                color: #372c2cc2;
+                border-bottom: 0px solid #fcdb94;
+                font-weight: 600;
+                max-width: 109px !important;
+            }
+
+            .pc_header{
+                display:none;
+            }
+
+            .show {
+                display: block !important;
+            }
+
+            .show_nv {
+                z-index: 99;
+                position: fixed;
+                top: 8%;
+                left: 0%;
+                background-color: #ffffff;
+            }
+
+            #prof1 {
+                width: 96% !important;
+                height: 93% !important;
+                background-color: #0000006b !important;
+                margin-left: 3.5% !important;
+                margin-top: 1% !important;
+            }
+
+            #prof2 {
+                width: 96% !important;
+                height: 52% !important;
+                background-color: #00000070 !important;
+                margin-left: 3.7% !important;
+                margin-top: 1% !important;
+            }
+
+            #profile {
+                background-image: url(/static/Heat_Life/img/final_blur_m.png);
+                width: 103%;
+                margin-left: -3%;
+                top: 0%;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                overflow: scroll;
+                height: 94%;
+                background-size: cover;
+            }
+
+
+            .df{display:none}
+            .df_m {
+                background-image: url(/static/Heat_Life/img/dm_f_en.png);
+                position: absolute;
+                height: 27%;
+                width: 95%;
+                top: 108%;
+                z-index: 10;
+                left: 4.5%;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-color: #0000007d;
+            }
+            .home_text h2 {
+                position: relative;
+                color: white;
+                font-family: arial;
+                font-weight: 100;
+            }
+
+            .home_text p {
+                position: relative;
+                font-size: 17px;
+                color: #362a2e;
+                font-family: arial;
+                font-weight: 100;
+                white-space: pre-wrap;
+                width: fit-content;
+            }
+
+            #a4s1_h1 {
+                top: -40% !important;
+                font-size: 13px;
+            }
+            #a4s1_h2 {
+                top: -63.5% !important;
+                left: 20.2% !important;
+                font-size: 13px;
+            }
+            #a4s1_h3 {
+                top: -48% !important;
+                left: 78.6% !important;
+                font-size: 13px;
+            }
+            #a4s1_h4 {
+                top: -67% !important;
+                left: 49.2% !important;
+                font-size: 12px;
+            }
+            #a4s1_p1 {
+                top: -52% !important;
+                left: 0.2% !important;
+                font-size: 13px;
+            }
+            #a4s1_p2 {
+                top: -94.5% !important;
+                left: 2.2% !important;
+                font-size: 13px;
+                white-space: normal;
+                width: 184px;
+            }
+            #a4s1_p3 {
+                top: -93% !important;
+                left: 60.2% !important;
+                font-size: 13px;
+            }
+            #a4s1_p4 {
+                top: -122% !important;
+                left: 51.2% !important;
+                font-size: 13px;
+                width: 188px;
+                white-space: normal;
+            }
+
+            #a4s2_h1 {
+                top: -64.5% !important;
+                left: 0.2% !important;
+                font-size: 15px;
+            }
+            #a4s2_h2 {
+                top: -51% !important;
+                left: 52.2% !important;
+                font-size: 15px;
+            }
+            #a4s2_h3 {
+                top: -72.5% !important;
+                left: 47.2% !important;
+                font-size: 15px;
+            }
+            #a4s2_p1 {
+                top: -75.5% !important;
+                left: 0.2% !important;
+                font-size: 12px;
+            }
+            #a4s2_p2 {
+                top: -79.5% !important;
+                left: 1.2% !important;
+                font-size: 12px;
+            }
+            #a4s2_p3 {
+                top: -112.5% !important;
+                left: 50.2% !important;
+                font-size: 13px;
+                width: 200px;
+            }
+            #a4s2_p4 {
+                top: -112.5% !important;
+                left: 54.2% !important;
+                font-size: 13px;
+            }
+
+            #a4s3_h1 {
+                top: -48.5% !important;
+                left: 2.2% !important;
+                font-size: 15px;
+            }
+            #a4s3_h2 {
+                top: -70.8% !important;
+                left: 3.2% !important;
+                font-size: 15px;
+            }
+            #a4s3_h3 {
+                top: -75.9% !important;
+                left: 58.2% !important;
+                font-size: 15px;
+            }
+            #a4s3_p1 {
+                top: -75.5% !important;
+                left: 4.2% !important;
+                font-size: 14px;
+            }
+            #a4s3_p2 {
+                top: -72.7% !important;
+                left: 4.2% !important;
+                font-size: 14px;
+            }
+            #a4s3_p3 {
+                top: -116.5% !important;
+                left: 59.2% !important;
+                font-size: 14px;
+            }
+            #a4s3_p4 {
+                top: -121.5% !important;
+                left: 58.2% !important;
+                font-size: 13px;
+            }
+
+            #layer1 {
+                top: -61% !important;
+                left: 1% !important;
+                width: 33% !important;
+                height: 48% !important;
+            }
+
+            #layer2 {
+                top: -147% !important;
+                left: 58.5% !important;
+                width: 41% !important;
+                height: 26.5% !important;
+                
+            }#layer2 span {display:none ;} #layer2 p{margin-top: -11px !important;}
+
+            #layer3 {
+                top: -107% !important;
+                left: 36% !important;
+                width: 63% !important;
+                height: 21% !important;
+            } #layer3 p { margin-top: -12px !important; }
+
+            .size_fix {
+                font-size: 18px !important;
+                color: #FFC107;
+            }
+
+            .size2 {
+                width: 380px;
+                height: 315px;
+            }
+
+            #f1 {
+                overflow: scroll;
+                height: 84% !important;
+            }
+
+            .kotic_wrapper {
+                overflow: scroll;
+                height: 89% !important;
+            }
+
+            .br_fix{
+                display:none;
+            }
+
+            .a1 {
+                overflow-y: scroll;
+                height: 89% !important;
+                margin-top: 8px;
+            }
+
+            .a2 {
+                position: relative !important;
+                left: 0% !important;
+                top: 103% !important;
+            }
+
+            .a3 {
+                width: 100% !important;
+                height: 100% !important;
+            }
+
+            .s1 {
+                margin-top: 21%;
+            }
+            .final {
+                width: 103% !important;
+                height: 98% !important;
+                margin-left: -2% !important;
+                top: 0% !important;
+                position: relative !important;
+                background-size: contain !important;
+                background-repeat: no-repeat !important;
+            }
+
+            .final_i1 {
+                background-image: url(/static/Heat_Life/img/home1m.png) !important;
+            }
+            .final_i2 {
+                background-image: url(/static/Heat_Life/img/home2m.png) !important;
+            }
+            .final_i3 {
+                background-image: url(/static/Heat_Life/img/home3m.png) !important;
+            }
+            .kotic_text {
+                white-space: pre-wrap !important;
+                font-family: arial !important;
+                font-size: 18px !important;
+                color: #362a2e !important;
+                margin-left: 10px !important;
+                line-height: 25px !important;
+            }
+
+            .kotic_img {
+                background-image: url(/static/Heat_Life/img/kotiki_en.jpg) !important;
+                width: 98% !important;
+                height: 62% !important;
+                background-size: contain !important;
+                background-repeat: no-repeat !important;
+                top: 74% !important;
+                z-index: -1 !important;
+                left: 1% !important;
+                margin-left: 1% !important;
+                display: flex !important;
+                position: relative !important;
+            }
+
+            .kotic_div {
+                border-left: 3px #FFC107 dotted !important;
+                position: relative !important;
+                top: -62% !important;
+                left: 5% !important;
+                width: 86% !important;
+            }
+
+            #kotic1 {
+                margin-top: -28px;
+            }
+
+            #kotic_div2 {
+                position: relative !important;
+                top: -71% !important;
+                left: 5% !important;
+                width: 92% !important;
+                height: 29% !important;
+            }
+
+            section {
+                opacity: 0;
+                animation: ani 1.0s forwards;
+                border: 4px #ed600000 solid;
+                height: 761px;
+                width: 98%;
+                box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
+                border-radius: 23px;
+                margin-bottom: 4%;
+                overflow: hidden;
+                margin-left: 1%;
+            }
+
+            @keyframes ani {
+                0% {
+                    opacity: 0;
+                }
+
+                100% {
+                    opacity: 1;
+                }
+            }
+
+            .proizvod {
+                background-image: url(/static/Heat_Life/img/zovod_f.png);
+                top: 1%;
+                height: 93%;
+                background-size: cover;
+                display: flex;
+                flex-direction: column;
+                width: 98%;
+                margin-left: 1%;
+                position: relative;
+                position: relative;
+                overflow: scroll;
+            }
+
+                .proizvod h2 {
+                    font-weight: 400;
+                    font-family: system-ui;
+                    color: white;
+                    margin-left: 11px;
+                    font-size: 24px !important;
+                }
+
+            .layers {
+                height: 99%;
+                width: 90%;
+                background-size: contain;
+                background-repeat: no-repeat;
+                top: 10%;
+                left: 9%;
+                z-index: -1;
+                margin-left: 1%;
+                display: flex;
+                position: relative;
+                background-image: url(/static/Heat_Life/img/tfcm.png) !important;
+            }
+
+            .layer {
+                position: relative;
+                box-shadow: 4px 0px 14px #ffa549;
+            }
+
+                .layer p {
+                    white-space: pre-wrap;
+                    font-weight: 400;
+                    font-size: 12px;
+                    font-family: Verdana;
+                    color: #777777;
+                    line-height: 15px;
+                    margin-left: 5px;
+                    position: absolute;
+                    width: -webkit-fill-available;
+                }
+
+            .installation {
+                height: 90%;
+                position: relative;
+                top: 0%;
+                width: 98%;
+                margin-left: 1%;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .installation_p1 {
+                white-space: pre-wrap;
+                font-weight: 400;
+                font-size: 15px;
+                font-family: Verdana;
+                color: white;
+                margin-left: 11px;
+                margin-top: -25px;
+            }
+
+            .installation_p2 {
+                white-space: pre-wrap;
+                font-weight: 400;
+                font-size: 16px;
+                font-family: system-ui;
+                color: white;
+                margin-left: 11px;
+                margin-top: -7%;
+            }
+
+            .installation h2 {
+                font-weight: 400;
+                font-family: system-ui;
+                color: white;
+                margin-left: 11px;
+                font-size: 19px !important;
+            }
+            
+
+            .sec2_installation1 {
+                width: 97%;
+                height: 41%;
+                background-color: #0000006b;
+                margin-left: 1.5%;
+                margin-top: 2%;
+            }
+
+            .sec2_installation2 {
+                width: 96%;
+                height: 56%;
+                background-color: #00000070;
+                margin-left: 2%;
+                margin-right: 1.5%;
+                margin-top: 2%;
+            }
+
+            #installation_p2_1 {
+                white-space: pre-wrap;
+                font-weight: 400;
+                font-size: 17px !important;
+                font-family: system-ui;
+                color: white;
+                margin-left: 11px;
+                margin-top: -25px !important;
+            }
+            #installation_p1_2 {
+            }
+            #sec2_installation1_1 {
+                margin-left: 1.5%;
+                margin-top: 2%;
+                width: 97% !important;
+                height: 89% !important;
+                background-color: #000000a1 !important;
+            }
+            #sec2_installation1_2 {
+                width: 97% !important;
+                height: 44% !important;
+                background-color: #000000a6 !important;
+            }
+
+            .article_int_light {
+                width: 107%;
+                margin-left: -3%;
+                margin-top: 1%;
+                border-bottom: 0px #ffc10763 double;
+                height: 59px;
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+            }
+
+            .article_int_button_light {
+                background-color: #F9F0DA;
+                border-radius: 0px;
+                width: 33%;
+                margin-left: 3px;
+                color: #777777;
+                margin-right: 10px;
+                margin-bottom: 2%;
+                font-size: 15px;
+                height: 54px;
+                border: none;
+                max-height: 93%;
+            }
+
+
+            .header_imgs {
+                max-width: 45px;
+                margin-left: 5px;
+            }
+
+            footer {
+                display: flex;
+                position: relative;
+                margin-top: 0.5%;
+                flex-direction: row;
+                border-top: 1px dashed #9E9E9E;
+                justify-content: space-evenly;
+            }
+
+            .footer_sec {
+                display: flex;
+                flex-direction: column;
+                margin-left: 20px;
+                font-size: 19px;
+            }
+
+            footer a {
+                margin-bottom: 20px;
+                font-family: monospace;
+                color: #372c2cc2;
+            }
+
+            footer h3 {
+                margin-bottom: 20px;
+                font-family: monospace;
+                color: #FF5722;
+                text-decoration: underline;
+            }
+
+            #s_1_3 img {
+                width: 62%;
+                margin-left: 112px;
+            }
+
+            .s_1_3_spisok {
+                display: flex;
+                flex-direction: column;
+                overflow: scroll;
+                overflow: scroll;
+                height: 84%;
+            }
+
+            .s_1_3_podspisok {
+                margin-left: 17px;
+            }
+
+                .s_1_3_podspisok img {
+                    width: 62% !important;
+                    margin-left: 75px !important;
+                }
+
+                .s_1_3_podspisok p {
+                    width: 97%;
+                    font-family: arial;
+                    font-size: 18px;
+                    color: #362a2e;
+                    margin-left: 10px;
+                }
+
+            .s_1_3_h {
+                border-bottom: 3px #ffd391 dashed !important;
+                width: 92% !important;
+                font-family: arial !important;
+                font-size: 19px !important;
+                margin-left: 5% !important;
+                color: #362a2e !important;
+                margin-top: 4%;
+            }
+
+            .form_ser {
+                position: relative;
+                width: 300px;
+                margin: 21px 12px;
+            }
+
+            .input_ser {
+                width: 100%;
+                height: 45px;
+                padding-left: 10px;
+                border: 2px solid #ffc10763;
+                border-radius: 5px;
+                outline: none;
+                background: #F9F0DA;
+                color: #9E9C9C;
+            }
+
+            .button_ser {
+                position: absolute;
+                left: 258px;
+                top: 2px;
+                width: 40px;
+                height: 38px;
+                border: none;
+                background: #F9F0DA;
+                border-radius: 0 5px 5px 0;
+                cursor: pointer;
+            }
+
+                .button_ser:before {
+                    content: "\f002";
+                    font-family: FontAwesome;
+                    font-size: 16px;
+                    color: #362a2e;
+                }
+
+            .s_1_1_h {
+                border-bottom: 5px #ffd391 dashed !important;
+                width: 49% !important;
+                font-family: arial !important;
+                font-size: 22px !important;
+                margin-left: 26% !important;
+                color: white !important;
+            }
+
+            s_1_1_text {
+                width: 99%;
+                background-color: #0000003b;
+                margin-top: -13px;
+            }
+
+            .s_1_1_text p {
+                width: 97%;
+                font-family: arial;
+                font-size: 20px;
+                color: white;
+            }
+
+            /*.for_img {
+            margin: 50px auto;
+            background-image: url(/static/Heat_Life/img/sunset1.jpg);
+            height: 100%;
+            width: 100%;
+            transform: skewY(-185deg);
+        }*/
+
+            /*.for_img_wr {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 568px;
+            transform: skewY(-3deg);
+            top: -35%;
+            position: relative;
+            z-index: -1;
+        }*/
+            .for_img {
+                margin: 23px auto;
+                background-image: url(/static/Heat_Life/img/sunset1.jpg);
+                height: 86%;
+                width: 100%;
+                transform: skewY(0deg);
+            }
+
+            .for_img_wr {
+                content: '';
+                display: block;
+                width: 99%;
+                height: 800px;
+                transform: skewY(0deg);
+                top: -72%;
+                position: relative;
+                z-index: -1;
+            }
+
+            .box {
+                display:none;
+                background-color: #87ceeb00;
+                margin-top: -35%;
+                padding: 0.2% 20px;
+                transform: skewY(0deg);
+                box-shadow: 10px 3px 5px #FF9800;
+            }
+
+                .box > .wrapper {
+                    -webkit-transform: skewY(5deg);
+                    transform: skewY(5deg);
+                }
+
+
+            html {
+                height: 3634.8px;
+                width: 421.39px;
+            }
+
+            body {
+                width: 100%;
+                height: 45%;
+            }
+
+            header {
+                width: 101%;
+                display: flex;
+                justify-content: center;
+                position: fixed;
+                top: 0px;
+                left: -5px;
+                height: 81px;
+                z-index: 99;
+            }
+
+            .header_menu {
+                display: flex;
+                align-items: center;
+            }
+
+            .header__color {
+                background: #ffffff;
+                box-shadow: 10px 5px 5px #ffa549;
+            }
+            /*-------------------------------------------------------------*/
+
+            aside {
+                position: fixed;
+                bottom: 40%;
+                left: 1%;
+                height: 173px;
+                display:none;
+            }
+
+            .transparent-container {
+                display: flex;
+                padding: 5px;
+                color: #ffffff;
+                width: 400px;
+                flex-direction: column;
+            }
+
+            .fixed-holder {
+                overflow: hidden;
+                width: 48px;
+                height: 41px;
+                margin: 0px;
+                padding: 0;
+                border: 0;
+            }
+
+            .fixed-div {
+                box-shadow: 0 0 0 500px #ffffff;
+                margin: 12px;
+                border-radius: 50%;
+                border: solid 1px #ed600096;
+                text-align: center;
+                padding: 8px;
+                width: 7px;
+                height: 7px;
+            }
+
+
+            /*-------------------------------------------------------------*/
+            main {
+                height: 70%;
+                width: 100%;
+                margin-top: 7%;
+            }
+
+            article {
+                height: fit-content;
+                width: 98%;
+            }
+
+
+            .article_int_wrapper {
+            }
+
+            .article_int {
+                position: relative;
+                height: 7%;
+                border-bottom: 8px #FFC107 double;
+                width: 94%;
+                margin-left: 4%;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                margin-top: 1%;
+            }
+
+            .art_over {
+                /* border-bottom: 8px #00BCD4 double; */
+                margin-left: 3% !important;
+            }
+
+            .art_but_over {
+                margin-right: 10px;
+                color: white;
+                margin-bottom: 2%;
+                font-size: 16px;
+                border: none;
+                max-height: 93%;
+                border-radius: 10px;
+                background-color: #ed6000b8 !important;
+                margin-top: 1%;
+                height: 59px;
+            }
+
+            .article_int_button {
+                margin-right: 10px;
+                background-color: #ed6000;
+                color: white;
+                /* padding: 16px; */
+                margin-bottom: 2%;
+                font-size: 16px;
+                border: none;
+                max-height: 93%;
+                border-radius: 10px;
+            }
+
+
+            .s_text {
+                color: #362a2e;
+                font-size: 18px;
+                margin-left: 2%;
+                border-left: 8px #FFC107 double !important;
+                padding-left: 10px;
+            }
+
+                .s_text p {
+                    font-family: arial;
+                }
+
+            .tezis {
+                width: 89% !important;
+                position: relative !important;
+                top: -2% !important;
+                left: 11% !important;
+                border-radius: 11px !important;
+                color: #362a2e !important;
+                font-size: 18px !important;
+            }
+
+            #tezis_1p1 {
+                width: 184px !important;
+                font-weight: bold !important;
+                font-size: 22px !important;
+                margin-left: -9% !important;
+                border-bottom: 5px #FFC107 dashed !important;
+            }
+
+            #tezis_1p2 {
+                margin-left: -9% !important;
+                font-size: 16px !important;
+                font-family: arial !important;
+            }
+
+            #tezis_1p3 {
+                margin-left: -8% !important;
+                font-size: 16px !important;
+                font-family: arial !important;
+            }
+
+            #tezis_1p4 {
+                margin-left: -8.5% !important;
+                font-size: 16px !important;
+                font-family: arial !important;
+            }
+
+            .vid_pos {
+                border-left: 8px #FFC107 double !important;
+                padding: 0px;
+                padding-left: 10px;
+            }
+
+
+            .vid_pos_wrapper {
+                width: 47%;
+                position: relative;
+                top: -1%;
+                left: 1%;
+                border-radius: 11px;
+            }
+            /*-------------------------------------------------------------*/
+            .dropbtn_lang {
+                background-color: #ed600000;
+                color: #FF5722;
+                padding: 4px;
+                font-size: 17px;
+                border: none;
+                margin-top: -3px;
+                margin-left: 16px;
+                border: 1px solid;
+                border-radius: 5px;
+                width: 35px;
+                height: 45px;
+            }
+
+            /* Контейнер <div> - необходим для размещения выпадающего содержимого */
+            .dropdown_lang {
+                position: relative;
+                display: inline-block;
+            }
+
+            /* Выпадающее содержимое (скрыто по умолчанию) */
+            .dropdown-content_lang {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                width: 100%;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+                /* Ссылки внутри выпадающего списка */
+                .dropdown-content_lang button {
+                    color: #362a2e;
+                    font-family: "Roboto";
+                    font-weight: bolder;
+                    padding: 12px 16px;
+                    text-decoration: none;
+                    display: block;
+                    width: 100%;
+                    text-align: left;
+                    background-color: transparent;
+                    border-color: transparent;
+                    margin-left: 1px;
+                }
+
+                    /* Изменение цвета выпадающих ссылок при наведении курсора */
+                    .dropdown-content_lang button:hover {
+                        background-color: #ddd;
+                    }
+
+            /* Показать выпадающее меню при наведении курсора */
+            .dropdown_lang:hover .dropdown-content_lang {
+                display: block;
+            }
+
+            /* Изменение цвета фона кнопки раскрывающегося списка при отображении содержимого раскрывающегося списка */
+            .dropdown_lang:hover .dropbtn_lang {
+                background-color: transparent;
+            }
+            /*-------------------------------------------------*/
+
+            /* Кнопка выпадающего списка */
+            .dropbtn {
+                background-color: #ed6000;
+                color: white;
+                padding: 16px;
+                font-size: 17px;
+                width: 282px;
+                border: none;
+                max-height: 90%;
+                margin-left: 1px;
+                transition-duration: 0.4s;
+                margin-top: 25px;
+                background-color: #ed600000;
+                color: #FF5722;
+                border: 1px solid;
+                border-radius: 5px;
+            }
+
+                .dropbtn:hover {
+                    background-color: #ed6000a6;
+                    color: white;
+                }
+
+            /* Контейнер <div> - необходим для размещения выпадающего содержимого */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            /* Выпадающее содержимое (скрыто по умолчанию) */
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                width: 100%;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+                /* Ссылки внутри выпадающего списка */
+                .dropdown-content button {
+                    color: #362a2e;
+                    font-weight: bolder;
+                    padding: 12px 16px;
+                    text-decoration: none;
+                    display: block;
+                    width: 100%;
+                    text-align: left;
+                    background-color: transparent;
+                    border-color: transparent;
+                }
+
+                    /* Изменение цвета выпадающих ссылок при наведении курсора */
+                    .dropdown-content button:hover {
+                        background-color: #ddd;
+                    }
+
+            /* Показать выпадающее меню при наведении курсора */
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            /* Изменение цвета фона кнопки раскрывающегося списка при отображении содержимого раскрывающегося списка */
+            .dropdown:hover .dropbtn {
+                background-color: #ed6000;
+            }
+
+            /*
+        font-family: "PT Sans Narrow";
+        font-weight: normal;
+
+        font-family: "Roboto";
+        font-weight: 500;
+        */
+        }
+        
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+
+        function open_menu() {
+            if (document.getElementById("nv").classList.contains('show')) {
+                document.getElementById("nv").classList.remove('show');
+                document.getElementById("nv").classList.remove('show_nv');
+            }
+            else {
+                document.getElementById("nv").classList.toggle("show");
+                document.getElementById("nv").classList.toggle("show_nv");
+            }
+
+        }
+
+        function sc(pr) {
+            const id = pr;
+            const yOffset = -100;
+            const element = document.getElementById(id);
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+
+
+        function change(a, s) {
+
+            try {
+                $(a).children('section').hide();
+                $(s).show();
+                } catch (error) {}}
+
+        // When the user scrolls the page, execute myFunction
+        window.onscroll = function () { myFunction() };
+
+        function myFunction() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.height = scrolled + "%";
+        }
+
+        $(document).scroll(function (e) {
+            $(window).scrollTop() > 70 ? $('header').addClass('header__color') : $('header').removeClass('header__color');
+        });
+    </script>
+</body>
+</html>

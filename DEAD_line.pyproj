@@ -1,0 +1,233 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Name>DEAD_line</Name>
+    <RootNamespace>DEAD_line</RootNamespace>
+    <InterpreterId>MSBuild|env1|$(MSBuildProjectFullPath)</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>cf576703-856a-4814-9801-8bbcceaa0394</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <DjangoSettingsModule>DEAD_line.settings</DjangoSettingsModule>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Heat_Life\admin.py" />
+    <Compile Include="Heat_Life\apps.py" />
+    <Compile Include="Heat_Life\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Heat_Life\migrations\__init__.py" />
+    <Compile Include="Heat_Life\models.py" />
+    <Compile Include="Heat_Life\tests.py" />
+    <Compile Include="Heat_Life\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Heat_Life\views.py" />
+    <Compile Include="Heat_Life\__init__.py" />
+    <Compile Include="manage.py" />
+    <Compile Include="DEAD_line\__init__.py" />
+    <Compile Include="DEAD_line\settings.py" />
+    <Compile Include="DEAD_line\urls.py" />
+    <Compile Include="DEAD_line\wsgi.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DEAD_line\zapisi.txt" />
+    <Content Include="Heat_Life\static\Heat_Life\img\1floor.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\2floor.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\3floor.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\back3.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\broker.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\dm_f_en.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\dm_f_gr.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\final_blur_m.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\home1_e.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\home1_m.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\home2_e.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\home3m.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\home3_e.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\kotiki_en.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\kotiki_gr.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\menu.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\plenka1.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\plenka1_en.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\plenka1_gr.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\tfcm.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\coop.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\dm.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\dm_f.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\final_blur.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\home1.PNG" />
+    <Content Include="Heat_Life\static\Heat_Life\img\home1m.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\home2.PNG" />
+    <Content Include="Heat_Life\static\Heat_Life\img\home2m.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\home3.PNG" />
+    <Content Include="Heat_Life\static\Heat_Life\img\house.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\kotiki.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\pages\o1.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\pages\o2.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\pages\o3.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\pages\o4.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\pages\o5.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\pages\s1.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\pages\s2.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\pages\s3.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\pages\such_0f.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\pages\such_0.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\pages\Sush_1.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\pages\sush_2.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\pages\tepl_0.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\none.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\rev.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\a.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\LOGO.JPG" />
+    <Content Include="Heat_Life\static\Heat_Life\img\LOGO.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\LOGO_mini.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\maps.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\phone.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\s1.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\sunset.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\sunset1.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\sup.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\tfc.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\video-call.png" />
+    <Content Include="Heat_Life\static\Heat_Life\img\zavod.jpg" />
+    <Content Include="Heat_Life\static\Heat_Life\img\zovod_f.png" />
+    <Content Include="Heat_Life\templates\Heat_Life_default\Feedback.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_en\coop.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_en\d_soon.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_en\faq.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_en\Feedback.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_en\Main_page.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_en\New.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_en\News.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_en\rev.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_en\sauna.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_en\soon.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_en\sush.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_en\tepl.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_gr\coop.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_gr\d_soon.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_gr\faq.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_gr\Feedback.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_gr\Main_page.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_gr\New.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_gr\News.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_gr\rev.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_gr\sauna.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_gr\soon.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_gr\sush.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_gr\tepl.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_ru\coop.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_ru\d_soon.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_ru\faq.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_ru\rev.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_ru\soon.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_ru\Feedback.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_ru\Main_page.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_default\Main_page.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_default\New.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_default\News.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_ru\New.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_ru\News.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_ru\sauna.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_ru\sush.html" />
+    <Content Include="Heat_Life\templates\Heat_Life_ru\tepl.html" />
+    <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DEAD_line\" />
+    <Folder Include="Heat_Life\" />
+    <Folder Include="Heat_Life\migrations\" />
+    <Folder Include="Heat_Life\static\" />
+    <Folder Include="Heat_Life\static\Heat_Life\" />
+    <Folder Include="Heat_Life\static\Heat_Life\img\" />
+    <Folder Include="Heat_Life\static\Heat_Life\fonts\" />
+    <Folder Include="Heat_Life\static\Heat_Life\img\pages\" />
+    <Folder Include="Heat_Life\static\Heat_Life\video\" />
+    <Folder Include="Heat_Life\templates\" />
+    <Folder Include="Heat_Life\templates\Heat_Life_ru\" />
+    <Folder Include="Heat_Life\templates\Heat_Life_en\" />
+    <Folder Include="Heat_Life\templates\Heat_Life_gr\" />
+    <Folder Include="Heat_Life\templates\Heat_Life_default\" />
+    <Folder Include="Heat_Life\templates\users\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env1\">
+      <Id>env1</Id>
+      <Version>3.9</Version>
+      <Description>env1 (Python 3.9 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
+    <Interpreter Include="env\">
+      <Id>env</Id>
+      <Version>3.7</Version>
+      <Description>env (Python 3.7 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

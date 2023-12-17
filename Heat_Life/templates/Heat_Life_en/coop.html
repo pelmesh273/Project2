@@ -1,0 +1,556 @@
+{% extends 'Heat_Life_en/Main_page.html' %}
+{%load static%}
+
+{% block content_en %}
+
+
+<!-- Контейнер выравнивает по ширине и по центру -->
+<div class="container">
+
+    <!-- content contains the contents of the form -->
+    <div class="content">
+
+        <!-- Left column: address, phone numbers, email. You can add yours -->
+        <div class="left-side">
+
+            <div style="height:100%" id="for_three">
+                <div class="address details">
+
+                    <!-- Instead of classes: names of font icons (fontawesome.com) -->
+                    <i class="fas fa-map-marker-alt"></i>
+
+                    <!-- topic - title, text-one, text-two - text -->
+                    <div class="topic">Address</div>
+                    <div class="text-one">g. Novosibirsk</div>
+                    <div class="text-two">Galushchaka 1</div>
+                </div>
+                <div class="phone details">
+                    <i class="fas fa-phone-alt"></i>
+                    <div class="topic">Phone</div>
+                    <div class="text-one">+357 96 578760</div>
+                    <div class="text-two">+357 99 951563</div>
+                </div>
+                <div class="email details">
+                    <i class="fas fa-envelope"></i>
+                    <div class="topic">Email</div>
+                    <div class="text-one">svheatlife@gmail.com</div>
+                    <div class="text-two">heatlife-cyprus.com</div>
+                </div>
+            </div>
+            <div class="email details">
+                <img src="{% static 'Heat_Life/img/broker.png' %}" style="width:30px" />
+                <div class="topic">Email</div>
+                <div class="text-one" style="font-size: 17px; white-space: normal;">
+                    We invite you to become a partner, dealer or agent of our company,
+                    to enter a promising market with an innovative product - Heatlife infrared heating film.
+                    This is not just a warm floor, but a full-fledged heating system.
+                    We offer favorable conditions and marketing support to create a profitable business.
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Right column: the form itself -->
+        <div class="right-side">
+
+            <!-- Title for the form -->
+            <div class="topic-text">Collaboration opportunity</div>
+
+            <!-- Some additional text -->
+            <p>
+                Fill out your personal information and we will contact you during business hours
+            </p>
+
+            <!-- Feedback form -->
+            <form method="post" name="to_like" id="myform">
+                {% csrf_token %}
+                <!-- Each input is placed into an input-box block for alignment -->
+                <div class="input-box">
+                    {{form.org_name}}
+                </div>
+                <div class="input-box">
+                    {{form.site}}
+                </div>
+                <div class="input-box">
+                    {{form.place}}
+                </div>
+                <div id="alert" style="display:none"></div>
+                <div class="input-box">
+                    {{form.activity}}
+                </div>
+                <div class="input-box">
+                    {{form.adress}}
+                </div>
+                <div class="input-box" style="overflow: hidden;">
+                    {{form.name}}
+                </div>
+                <div class="input-box">
+                    {{form.email}}
+                </div>
+                <div class="input-box">
+                    {{form.phone}}
+                </div>
+                <div id="alert" style="display:none"></div>
+                <div class="input-box">
+                    {{form.jt}}
+                </div>
+                <div class="input-box message-box">
+                    {{form.text}}
+                </div>
+                <button name="my_button" type="submit" class="BN" id="BN_1">Submit!</button>
+                <div class="BN" style="display:none" id="BN_2">Thank you for contacting</div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- Подключение шрифтовых иконок, можно получить на fontawesome.com -->
+<script src="https://kit.fontawesome.com/fce9a50d02.js"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#myform").on("submit", function (event) {
+
+            event.preventDefault();
+            $.ajax({
+                url: "/coop",
+                type: "post",
+                'data': $(this).serialize(),
+                success: function (response) {
+                    /*console.log("Данные успешно отправлены!");*/
+                    if (response.success) {
+                        $('#alert').hide();
+                        $('#BN_1').hide();
+                        $('#BN_2').show();
+                    } else {
+                        $('#alert').html('<div class="alert alert-danger">' + "please ensure that your phonenumber and email is correct" + '</div>').show();
+                    }
+                },
+            });
+        });
+    });
+
+    document.getElementsByName('org_name')[0].placeholder = 'Company name';
+    document.getElementsByName('site')[0].placeholder = 'Company website (if available)';
+    document.getElementsByName('activity')[0].placeholder = 'Company activity';
+    document.getElementsByName('adress')[0].placeholder = 'Address';
+    document.getElementsByName('name')[0].placeholder = 'Full name';
+    document.getElementsByName('email')[0].placeholder = 'Mail';
+    document.getElementsByName('phone')[0].placeholder = 'Phone';
+    document.getElementsByName('jt')[0].placeholder = 'Job title';
+    document.getElementsByName('text')[0].placeholder = 'Message';
+
+</script>
+
+<style>
+    @media screen and (min-width: 525px) { /*ПКШНАЯ*/
+        #for_three {
+        }
+
+        main {
+            height: 70%;
+            width: 100%;
+            margin-top: 0% !important;
+        }
+
+        footer {
+            top: 195px !important;
+        }
+
+        /* Подключение шрифта Roboto */
+        @import url("https:/*fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+        /* Убираем все отступы */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+            *,
+            *::after,
+            *::before {
+                box-sizing: inherit;
+            }
+
+        /* При расчете размеров инпутов учитываем внутренние отступы и границы */
+        input,
+        textarea {
+            box-sizing: border-box;
+        }
+
+        /* Ограничиваем контейнер по ширине 1000px */
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+
+        /* Стили самой формы */
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: "Roboto", sans-serif;
+            position: relative;
+            top: 128px;
+            left: 40%;
+            background: #fff;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+        }
+
+        /* Стили левой колонки */
+        .left-side {
+            width: 27%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+            /* Стили разделительной линии между левой и правой колонкой */
+            .left-side::before {
+                content: ""; /* контент нам не нужен */
+                position: absolute; /* позиционируем относительно .left-side */
+                height: 70%; /* высота 70% от .left-side */
+                width: 2px; /* ширина 2px */
+                background: #afafb6;
+                right: -15px; /* позиционируем справа + отступ 15px (справа) */
+                top: 50%; /* выравниваем по центру */
+                transform: translateY(-50%); /* выравниваем по центру */
+            }
+
+        /* Стили правой колонки */
+        .right-side {
+            width: 75%; /* занимает 75% общей ширины */
+            margin-left: 75px;
+        }
+
+        /* Элементы левой колонки: адрес, телефон, email */
+        .details {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+            /* Общие стили для иконок */
+            .details i {
+                font-size: 25px;
+                color: #FF5722;
+                margin-bottom: 10px;
+            }
+
+        /* Стили для заголовков левой колонки */
+        .topic {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 7px; /* отступ снизу 7px */
+        }
+
+        /* Стили для текста левой колонки */
+        .text-one,
+        .text-two {
+            font-size: 14px;
+            color: #afafb6;
+        }
+
+        /* Заголовок правой колонки */
+        .topic-text {
+            font-size: 23px;
+            font-weight: 600;
+            color: #FF5722;
+            margin-bottom: 10px;
+        }
+
+        /* Текст правой колонки */
+        .right-side p {
+            margin-bottom: 20px;
+        }
+
+        /* Контейнер для input'ов формы */
+        .input-box {
+            height: 42px; /* по сути задаем высоту input'а */
+            width: 100%; /* ширина на всю ширину правой колонки (с учетом padding) */
+            margin-bottom: 20px; /* отступаем снизу 20px */
+        }
+
+            /* Стили для input и textarea (поле сообщение) */
+            .input-box input,
+            .input-box textarea {
+                height: 100%; /* растягиваем на всю высоту контейнера 50px */
+                width: 100%; /* растягиваем на всю ширину */
+                border: none; /* убираем внешние края */
+                border-radius: 5px; /* скругляем края */
+                background: #f0f1f8; /* задаем цвет фона */
+                padding: 0 20px; /* отступ справа и слева 20px */
+            }
+
+
+            /* Отдельно стилизуем поле сообщение */
+            .input-box textarea {
+                resize: none; /* чтобы нельзя было менять высоту */
+                padding: 20px;
+                font-family: "Roboto", sans-serif;
+            }
+
+        /* Это контейнер для поля сообщение */
+        .message-box {
+            min-height: 110px; /* минимальная высота 110px */
+        }
+
+        .BN {
+            color: #fff;
+            font-size: 18px;
+            background: #FF5722;
+            outline: none;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 7px;
+            transition: 0.2s;
+        }
+
+        /* Стили для контейнера кнопки */
+        .BN {
+            display: inline-block; /* делаем блочно-строчный элемент */
+        }
+
+        /* Стили для самой кнопки */
+        .BN {
+            color: #fff;
+            font-size: 18px;
+            background: #FF5722;
+            outline: none;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 7px;
+            transition: 0.2s;
+        }
+
+            /* Меняем цвет фона при наведении на кнопку */
+            .BN:hover {
+                background-color: #f3741c;
+            }
+    }
+
+    @media screen and (max-width: 525px) { /*МОБИЛЬНАЯ*/
+
+        .dropbtn_lang {
+            background-color: #ed600000;
+            color: #FF5722;
+            padding: 4px;
+            font-size: 17px;
+            border: none;
+            margin-top: -3px;
+            margin-left: 16px;
+            border: 1px solid;
+            border-radius: 5px;
+            width: 25px !important;
+            height: 38px !important;
+        }
+
+        html {
+            height: fit-content !important;
+            width: 421.39px;
+        }
+
+        #for_three {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        main {
+            height: 70%;
+            width: 100%;
+            margin-top: 0% !important;
+        }
+
+        footer {
+            top: 195px !important;
+        }
+
+        /* Подключение шрифта Roboto */
+        @import url("https:/*fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+        /* Убираем все отступы */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+            *,
+            *::after,
+            *::before {
+                box-sizing: inherit;
+            }
+
+        /* При расчете размеров инпутов учитываем внутренние отступы и границы */
+        input,
+        textarea {
+            box-sizing: border-box;
+        }
+
+        /* Ограничиваем контейнер по ширине 1000px */
+        .container {
+            width: 92%;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+
+        /* Стили самой формы */
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: "Roboto", sans-serif;
+            position: relative;
+            top: 80px;
+            left: 1%;
+            background: #fff;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+            flex-direction: column-reverse;
+        }
+
+        /* Стили левой колонки */
+        .left-side {
+            width: 108%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            margin-top: 9%;
+        }
+
+            /* Стили разделительной линии между левой и правой колонкой */
+            .left-side::before {
+                content: "";
+                position: absolute;
+                height: 2px;
+                width: 86%;
+                background: #afafb6;
+                right: 24px;
+                top: -3%;
+                transform: translateY(-50%);
+            }
+
+        /* Стили правой колонки */
+        right-side {
+            width: 97%;
+            margin-left: 11px;
+        }
+
+        /* Элементы левой колонки: адрес, телефон, email */
+        .details {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+            /* Общие стили для иконок */
+            .details i {
+                font-size: 25px;
+                color: #FF5722;
+                margin-bottom: 10px;
+            }
+
+        /* Стили для заголовков левой колонки */
+        .topic {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 7px; /* отступ снизу 7px */
+        }
+
+        /* Стили для текста левой колонки */
+        .text-one,
+        .text-two {
+            font-size: 14px;
+            color: #afafb6;
+        }
+
+        /* Заголовок правой колонки */
+        .topic-text {
+            font-size: 23px;
+            font-weight: 600;
+            color: #FF5722;
+            margin-bottom: 10px;
+        }
+
+        /* Текст правой колонки */
+        .right-side p {
+            margin-bottom: 20px;
+        }
+
+        /* Контейнер для input'ов формы */
+        .input-box {
+            height: 42px; /* по сути задаем высоту input'а */
+            width: 100%; /* ширина на всю ширину правой колонки (с учетом padding) */
+            margin-bottom: 20px; /* отступаем снизу 20px */
+        }
+
+            /* Стили для input и textarea (поле сообщение) */
+            .input-box input,
+            .input-box textarea {
+                height: 100%; /* растягиваем на всю высоту контейнера 50px */
+                width: 100%; /* растягиваем на всю ширину */
+                border: none; /* убираем внешние края */
+                border-radius: 5px; /* скругляем края */
+                background: #f0f1f8; /* задаем цвет фона */
+                padding: 0 20px; /* отступ справа и слева 20px */
+            }
+
+
+            /* Отдельно стилизуем поле сообщение */
+            .input-box textarea {
+                resize: none; /* чтобы нельзя было менять высоту */
+                padding: 20px;
+                font-family: "Roboto", sans-serif;
+            }
+
+        /* Это контейнер для поля сообщение */
+        .message-box {
+            min-height: 110px; /* минимальная высота 110px */
+        }
+
+        .BN {
+            color: #fff;
+            font-size: 18px;
+            background: #FF5722;
+            outline: none;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 7px;
+            transition: 0.2s;
+        }
+
+        /* Стили для контейнера кнопки */
+        .BN {
+            display: inline-block; /* делаем блочно-строчный элемент */
+        }
+
+        /* Стили для самой кнопки */
+        .BN {
+            color: #fff;
+            font-size: 18px;
+            background: #FF5722;
+            outline: none;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 7px;
+            transition: 0.2s;
+        }
+
+            /* Меняем цвет фона при наведении на кнопку */
+            .BN:hover {
+                background-color: #f3741c;
+            }
+    }
+        
+</style>
+
+{% endblock %}

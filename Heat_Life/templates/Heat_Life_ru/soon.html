@@ -1,0 +1,243 @@
+{% extends 'Heat_Life_ru/Main_page.html' %}
+{%load static%}
+
+{% block content_ru %}
+
+<div class="all_block" style="display: flex !important; flex-wrap: wrap !important;">
+    {% for el in object_list %}
+    <div class="one_block" style="width: 30%; box-shadow: 4px 0px 14px #ffa549; margin-left: 16px; margin-bottom: 16px; margin-top: 11px;">
+        <h2 class="one_block_name">{{el.name_ru}}</h2>
+        <div style=" display: flex; flex-direction: column;">
+            <div class="one_block_img" style="background-image: url('../../../{{el.img}}'); width: 100%; height: 400px;"></div>
+            <div style=" width: 100%;">
+                <p class="one_block_p" style=" white-space: pre-wrap;">{{el.short_desc_ru}}</p>
+                <h3 class="one_block_name" style="font-size:16px !important">{{el.price}}</h3>
+                <a href="{%url 'product_dv' el.id%}" style="text-decoration: none; text-decoration: none; margin-left: 10px; color: #FF5722; font-family: 'Roboto';">Смотреть полностью</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+    @media screen and (min-width: 525px) {
+
+        footer {
+            display: flex;
+            position: relative;
+            margin-top: -0.5% !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+
+        html {
+            height: fit-content !important;
+        }
+
+        .table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            width: 678px;
+            text-align: left;
+            border-collapse: collapse;
+            background: #ffffff45;
+            font-size: 17px;
+            font-weight: 500;
+            margin-left: 10px;
+            white-space: pre-wrap;
+            color: #636363;
+            margin-left: 27px;
+            margin-top: -50px;
+        }
+
+        .NAME {
+            font-size: 36px;
+            font-family: math;
+            color: #494949d9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 20%;
+            white-space: nowrap;
+            border-bottom: 10px double #fcdb94;
+            width: fit-content;
+            margin-top: 19px;
+        }
+
+        .all_block {
+            margin-top: 7%;
+            display: flex;
+            width: 1369px;
+            margin-left: 14%;
+            box-shadow: -1px 4px 8px 0 rgba(34, 60, 80, 0.2);
+            flex-direction: column;
+        }
+
+        .one_block {
+        }
+
+        .one_block_name {
+            font-size: 27px;
+            font-family: monospace;
+            color: #362a2ed9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 10px;
+            white-space: nowrap;
+            margin-top: 20px;
+            border-bottom: 2px solid #fcdb94;
+            width: fit-content;
+        }
+
+        .one_block_img {
+            height: 600px;
+            width: 900px;
+            background-size: cover;
+            margin-left: 1%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .one_block_p {
+            font-size: 18px;
+            font-family: system-ui;
+            /* font-family: "Roboto", sans-serif; */
+            color: #362a2e;
+            font-weight: 400;
+            margin-left: 10px;
+            white-space: pre-wrap;
+        }
+
+        footer {
+            display: flex;
+            position: relative;
+            top: 20px !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+    }
+
+    @media screen and (max-width: 525px) {
+        /*МОБИЛЬНАЯ*/
+        footer {
+            display: flex;
+            position: relative;
+            margin-top: -0.5% !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+
+        html {
+            height: fit-content !important;
+        }
+
+        .table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            width: 678px;
+            text-align: left;
+            border-collapse: collapse;
+            background: #ffffff45;
+            font-size: 17px;
+            font-weight: 500;
+            margin-left: 10px;
+            white-space: pre-wrap;
+            color: #636363;
+            margin-left: 27px;
+            margin-top: -50px;
+        }
+
+        .NAME {
+            font-size: 36px;
+            font-family: math;
+            color: #494949d9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 20%;
+            white-space: nowrap;
+            border-bottom: 10px double #fcdb94;
+            width: fit-content;
+            margin-top: 19px;
+        }
+
+        .all_block {
+            margin-top: 19%;
+            display: flex;
+            width: 422px !important;
+            margin-left: 0%;
+            box-shadow: -1px 4px 8px 0 rgba(34, 60, 80, 0.2);
+            flex-direction: column;
+        }
+
+        .one_block {
+            width: 90% !important;
+            box-shadow: 4px 0px 14px #ffa549;
+            margin-left: 16px;
+            margin-bottom: 16px;
+            margin-top: 11px;
+        }
+
+        .one_block_name {
+            font-size: 27px;
+            font-family: monospace;
+            color: #362a2ed9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 10px;
+            white-space: nowrap;
+            margin-top: 20px;
+            border-bottom: 2px solid #fcdb94;
+            width: fit-content;
+        }
+
+        .one_block_img {
+            height: 600px;
+            width: 900px;
+            background-size: cover;
+            margin-left: 1%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .one_block_p {
+            font-size: 18px;
+            font-family: system-ui;
+            /* font-family: "Roboto", sans-serif; */
+            color: #362a2e;
+            font-weight: 400;
+            margin-left: 10px;
+            white-space: pre-wrap;
+        }
+
+        footer {
+            display: flex;
+            position: relative;
+            top: 20px !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+    }
+</style>
+{% endblock %}

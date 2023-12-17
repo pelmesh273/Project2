@@ -1,0 +1,246 @@
+{% extends 'Heat_Life_en/Main_page.html' %}
+{%load static%}
+
+{% block content_en %}
+
+<div class="all_block">
+    <h1 class="NAME" style=" margin-left: 1% !important;">Отзывы</h1>
+
+    {% for el in object_list %}
+
+    <div class="one_block">
+        <h2 class="one_block_name">{{el.title_en}}</h2>
+
+        <div style=" display: flex; flex-direction: row;" id="myblock">
+            <div class="one_block_img" style="background-image: url('../../../{{el.img}}'); height: 100px !important; width: 100px !important; border-radius: 50%; margin-bottom: 10px;"></div>
+            <div>
+                <p class="one_block_p" style=" white-space: pre-wrap;">{{el.review_en}}</p>
+                <h3 class="one_block_name" style="font-size:16px !important">{{el.name_en}}</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+    @media screen and (min-width: 525px) {
+        footer {
+            display: flex;
+            position: relative;
+            margin-top: 0.5% !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+
+        html {
+            height: fit-content !important;
+        }
+
+        .table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            width: 678px;
+            text-align: left;
+            border-collapse: collapse;
+            background: #ffffff45;
+            font-size: 17px;
+            font-weight: 500;
+            margin-left: 10px;
+            white-space: pre-wrap;
+            color: #636363;
+            margin-left: 27px;
+            margin-top: -50px;
+        }
+
+        .NAME {
+            font-size: 36px;
+            font-family: math;
+            color: #494949d9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 1%;
+            white-space: nowrap;
+            border-bottom: 10px double #fcdb94;
+            width: fit-content;
+            margin-top: 19px;
+        }
+
+        .all_block {
+            margin-top: 7%;
+            display: flex;
+            width: 1369px;
+            margin-left: 14%;
+            box-shadow: -1px 4px 8px 0 rgba(34, 60, 80, 0.2);
+            flex-direction: column;
+        }
+
+        .one_block {
+        }
+
+        .one_block_name {
+            font-size: 27px;
+            font-family: monospace;
+            color: #362a2ed9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 10px;
+            white-space: nowrap;
+            margin-top: 20px;
+            border-bottom: 2px solid #fcdb94;
+            width: fit-content;
+        }
+
+        .one_block_img {
+            height: 600px;
+            width: 900px;
+            background-size: cover;
+            margin-left: 1%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .one_block_p {
+            font-size: 18px;
+            font-family: system-ui;
+            /* font-family: "Roboto", sans-serif; */
+            color: #362a2e;
+            font-weight: 400;
+            margin-left: 10px;
+            white-space: pre-wrap;
+        }
+
+        footer {
+            display: flex;
+            position: relative;
+            top: 20px !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+    }
+
+    @media screen and (max-width: 525px) { /*МОБИЛЬНАЯ*/
+        #myblock {
+            flex-direction: column !important;
+        }
+
+        footer {
+            display: flex;
+            position: relative;
+            margin-top: 0.5% !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+
+        html {
+            height: fit-content !important;
+        }
+
+        .table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            width: 678px;
+            text-align: left;
+            border-collapse: collapse;
+            background: #ffffff45;
+            font-size: 17px;
+            font-weight: 500;
+            margin-left: 10px;
+            white-space: pre-wrap;
+            color: #636363;
+            margin-left: 27px;
+            margin-top: -50px;
+        }
+
+        .NAME {
+            font-size: 28px;
+            font-family: math;
+            color: #494949d9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 20%;
+            white-space: nowrap;
+            border-bottom: 10px double #fcdb94;
+            width: fit-content;
+            margin-top: 19px;
+            margin-left: 10% !important;
+        }
+
+        .all_block {
+            margin-top: 19%;
+            display: flex;
+            width: 425px;
+            margin-left: -1%;
+            box-shadow: -1px 4px 8px 0 rgba(34, 60, 80, 0.2);
+            flex-direction: column;
+        }
+
+        .one_block {
+        }
+
+        .one_block_name {
+            font-family: monospace;
+            color: #362a2ed9;
+            font-weight: 500;
+            margin-left: 10px;
+            margin-top: 20px;
+            border-bottom: 2px solid #fcdb94;
+            width: fit-content;
+            white-space: pre-wrap;
+            font-size: 17px;
+        }
+
+
+        .one_block_img {
+            height: 600px;
+            width: 900px;
+            background-size: cover;
+            margin-left: 1%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .one_block_p {
+            font-size: 15px;
+            font-family: system-ui;
+            /* font-family: "Roboto", sans-serif; */
+            color: #362a2e;
+            font-weight: 400;
+            margin-left: 10px;
+            white-space: pre-wrap;
+        }
+
+        footer {
+            display: flex;
+            position: relative;
+            top: 20px !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+    }
+</style>
+{% endblock %}

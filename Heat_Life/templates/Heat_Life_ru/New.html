@@ -1,0 +1,196 @@
+{% extends 'Heat_Life_ru/Main_page.html' %}
+{%load static%}
+
+{% block content_ru %}
+<span style="display:none">ру</span>
+<div class="all_block">
+    <h1 class="NAME">{{New.name}}</h1>
+    {% for el in New.news_block.all %}
+    <div class="one_block">
+        <h2 class="one_block_name">{{ el.name }}</h2>
+        <div class="one_block_img" style="background-image: url('../../../{{el.image}}');"></div>
+        <p class="one_block_p">{{ el.full_desc }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+    @media screen and (min-width: 525px) {
+        footer {
+            display: flex;
+            position: relative;
+            margin-top: 0.5% !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+
+        html {
+            height: fit-content !important;
+        }
+
+        .NAME {
+            font-size: 36px;
+            font-family: math;
+            color: #494949d9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 20%;
+            white-space: nowrap;
+            border-bottom: 10px double #fcdb94;
+            width: fit-content;
+            margin-top: 19px;
+        }
+
+        .all_block {
+            margin-top: 7%;
+            display: flex;
+            width: 1369px;
+            margin-left: 14%;
+            box-shadow: -1px 4px 8px 0 rgba(34, 60, 80, 0.2);
+            flex-direction: column;
+        }
+
+        .one_block {
+        }
+
+        .one_block_name {
+            font-size: 27px;
+            font-family: monospace;
+            color: #362a2ed9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 10px;
+            white-space: nowrap;
+            margin-top: 20px;
+            border-bottom: 2px solid #fcdb94;
+            width: fit-content;
+        }
+
+        .one_block_img {
+            height: 600px;
+            width: 900px;
+            background-size: cover;
+            margin-left: 1%;
+        }
+
+        .one_block_p {
+            font-size: 18px;
+            font-family: system-ui;
+            /* font-family: "Roboto", sans-serif; */
+            color: #362a2e;
+            font-weight: 400;
+            margin-left: 10px;
+            white-space: pre-wrap;
+        }
+
+        footer {
+            display: flex;
+            position: relative;
+            top: 20px !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+    }
+
+    @media screen and (max-width: 525px) { /*МОБИЛЬНАЯ*/
+
+        footer {
+            display: flex;
+            position: relative;
+            margin-top: 0.5% !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+
+        html {
+            height: fit-content !important;
+            width: 421.39px;
+        }
+
+        .table {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            width: 90%;
+            text-align: left;
+            border-collapse: collapse;
+            background: #ffffff45;
+            font-size: 17px;
+            font-weight: 500;
+            margin-left: 10px;
+            white-space: pre-wrap;
+            color: #636363;
+            margin-left: 27px;
+            margin-top: 1px;
+        }
+
+        .NAME {
+            font-size: 26px;
+            font-family: math;
+            color: #494949d9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 1%;
+            border-bottom: 10px double #fcdb94;
+            width: fit-content;
+            margin-top: 19px;
+            width: 98%;
+        }
+
+        .all_block {
+            margin-top: 18%;
+            display: flex;
+            width: 100%;
+            margin-left: -1%;
+            box-shadow: -1px 4px 8px 0 rgba(34, 60, 80, 0.2);
+            flex-direction: column;
+        }
+
+        .one_block {
+        }
+
+        .one_block_name {
+            font-size: 18px;
+            font-family: monospace;
+            color: #362a2ed9;
+            font-weight: 500;
+            margin-top: 0px;
+            margin-left: 8px;
+            /* white-space: nowrap; */
+            margin-top: 20px;
+            border-bottom: 2px solid #fcdb94;
+            width: 398px;
+        }
+
+        .one_block_img {
+            height: 300px;
+            width: 400px;
+            background-size: cover;
+            margin-left: 1%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .one_block_p {
+            font-size: 18px;
+            font-family: system-ui;
+            /* font-family: "Roboto", sans-serif; */
+            color: #362a2e;
+            font-weight: 400;
+            margin-left: 10px;
+            white-space: normal !important;
+        }
+
+        footer {
+            display: flex;
+            position: relative;
+            top: 20px !important;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+    }
+    
+</style>
+{% endblock %}

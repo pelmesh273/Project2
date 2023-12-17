@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>DEF</title>
+</head>
+{%load static%}
+{% load i18n %}
+<body>
+
+
+
+    <header>
+        <img src="{% static 'Heat_Life/img/LOGO_mini.png' %}" style="margin-right: 10px;" />
+        <div class="header_menu">
+
+            <div class="dropdown">
+                <button class="dropbtn">Информация</button>
+                <div class="dropdown-content">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input value="gr" type="hidden" name="post_lang">
+                        <button value="gr" type="submit">gr</button>
+                    </form>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <input value="en" type="hidden" name="post_lang">
+                        <button value="en" type="submit">en</button>
+                    </form>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <input value="ru" type="hidden" name="post_lang">
+                        <button value="ru" type="submit">ru</button>
+                    </form>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <input value="auto" type="hidden" name="post_lang">
+                        <button value="auto" type="submit">auto</button>
+                    </form>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Продукция</button>
+                <div class="dropdown-content">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input value="gr" type="hidden" name="post_lang">
+                        <button value="gr" type="submit">gr</button>
+                    </form>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <input value="en" type="hidden" name="post_lang">
+                        <button value="en" type="submit">en</button>
+                    </form>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <input value="ru" type="hidden" name="post_lang">
+                        <button value="ru" type="submit">ru</button>
+                    </form>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <input value="auto" type="hidden" name="post_lang">
+                        <button value="auto" type="submit">auto</button>
+                    </form>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Применение</button>
+                <div class="dropdown-content">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input value="gr" type="hidden" name="post_lang">
+                        <button value="gr" type="submit">gr</button>
+                    </form>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <input value="en" type="hidden" name="post_lang">
+                        <button value="en" type="submit">en</button>
+                    </form>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <input value="ru" type="hidden" name="post_lang">
+                        <button value="ru" type="submit">ru</button>
+                    </form>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <input value="auto" type="hidden" name="post_lang">
+                        <button value="auto" type="submit">auto</button>
+                    </form>
+                </div>
+            </div>
+            <!------------------------------------------------------------------------->
+            <button class="dropbtn">Дилеры</button>
+            <button class="dropbtn">Новости</button>
+            <button class="dropbtn">Бизнес</button>
+            <!------------------------------------------------------------------------->
+            <!--                          Language change                            -->
+            <!------------------------------------------------------------------------->
+            <div class="dropdown_lang">
+                <button class="dropbtn_lang">RU</button>
+                <div class="dropdown-content_lang">
+                    <form method="post">
+                        {% csrf_token %}
+                        <input value="gr" type="hidden" name="post_lang">
+                        <button value="gr" type="submit">GR</button>
+                    </form>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <input value="en" type="hidden" name="post_lang">
+                        <button value="en" type="submit">EN</button>
+                    </form>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <input value="ru" type="hidden" name="post_lang">
+                        <button value="ru" type="submit">RU</button>
+                    </form>
+
+                    <form method="post" style="display:none;">
+                        {% csrf_token %}
+                        <input value="auto" type="hidden" name="post_lang">
+                        <button value="auto" type="submit">auto</button>
+                    </form>
+                </div>
+            </div>
+            <!------------------------------------------------------------------------->
+            <!--                          Language change                            -->
+            <!------------------------------------------------------------------------->
+            <span>
+                <a href="tel:89246263306"><img style="max-height:80px; max-width:80px;" src="{% static 'Heat_Life/img/video-call.png' %}" /></a>
+            </span>
+            <span>
+                <a href="tel:89246263306"><img style="max-height:80px; max-width:80px;" src="{% static 'Heat_Life/img/rev.png' %}" /></a>
+            </span>
+            <span>
+                <a href="tel:89246263306"><img style="max-height:80px; max-width:80px;" src="{% static 'Heat_Life/img/maps.png' %}" /></a>
+            </span>
+            <span>
+                <a href="tel:89246263306"><img style="max-height:80px; max-width:80px;" src="{% static 'Heat_Life/img/sup.png' %}" /></a>
+            </span>
+        </div>
+        <form class="form_ser" method="get" action="{% url 'News_page_search' %}">
+            <input class="input_ser" type="text" placeholder="Αναζήτηση">
+            <button class="button_ser" type="submit"></button>
+        </form>
+    </header>
+
+
+    <nav></nav>
+    {% block content_def %}
+    <main>
+        <article id="art_1">
+
+            <section>
+
+                <div class="article_int_wrapper">
+                    <div class="article_int">
+                        <button class="article_int_button"><p>Обзор</p></button>
+                        <button class="article_int_button"><p>Преимущество пленок</p></button>
+                        <button class="article_int_button"><p>Преимущество отопления</p></button>
+                    </div>
+                </div>
+
+                <div id="1_1_text" class="s_text">
+                    <h3 style="border-bottom: 5px #FFC107 dashed !important; width: 46%;">Инфракрасный теплый пол «ХитЛайф»</h3>
+                    <p>Теплый пол Хитлайф — это отопительная плёнка толщиной меньше миллиметра. </p>
+                    <p>Такой теплый пол закладывается прямо под половое покрытие: ламинат, паркет, линолеум, стяжку или плитку. </p>
+                    <p>Плёнка прогревает финишное покрытие и превращает пол в большую низкотемпературную батарею.</p>
+                    <p>Такой теплый пол удобно и выгодно использовать в частном доме, квартире, в коттедже и на даче.</p>
+                </div>
+
+                <div class="tezis">
+                    <p id="tezis_1p1">Основные тезисы:</p>
+                    <p id="tezis_1p2">Обладает высокой степенью универсальности <b style="font-size: 35px; color: #FFC107;">---</b> </p>
+                    <p id="tezis_1p3">Легка в эксплуатации , за счет удобного интерфейса <b style="font-size: 35px; color: #FFC107;">---</b></p>
+                    <p id="tezis_1p4">Инфрокрасная пленка приносит выгоду до 20 рза в сравнении с устаревшими аналогами <b style="font-size: 35px; color: #FFC107;">---</b></p>
+                </div>
+
+                <div class="vid_pos_wrapper">
+                    <div class="vid_pos">
+                        <p style="font-size: 16px; font-family: arial; font-weight: bold;">
+                            Ανασκόπηση βίντεο της ταινίας υπέρυθρων
+                        </p>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/kAA25PfFKJY?si=bwj_KzzuDO6X2_0I" title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="wrapper">
+                    </div>
+                </div>
+            </section>
+
+            <section id="s_1_1">
+
+                <div class="article_int_wrapper">
+                    <div class="art_over article_int">
+                        <button class="art_but_over article_int_button "><p>Ανασκόπηση</p></button>
+                        <button class="art_but_over article_int_button "><p>Το πλεονέκτημα των ταινιών</p></button>
+                        <button class="art_but_over article_int_button "><p>Οφέλη θέρμανσης</p></button>
+                    </div>
+                    <div class="s_1_1_text">
+                        <p class="s_1_1_h">ООО «ХИТ ЛАЙФ» </p>
+                        <p style="margin-left: 3%;">Αποκλειστικός διανομέας του φιλμ θέρμανσης HeatLife από τη νοτιοκορεάτικη κατασκευαστική εταιρεία Ondolia Co., LTD.</p>
+                        <p style="margin-left: 1%;">Οι κατασκευαστές φιλμ υπέρυθρης θέρμανσης "HeatLife" (Νότια Κορέα) μπόρεσαν να εφαρμόσουν τις πιο προηγμένες τεχνολογίες της εποχής μας στα προϊόντα τους.</p>
+                        <p style="margin-left: 1%;">Το φιλμ υπέρυθρης θέρμανσης HeatLife κατέχει ηγετική θέση μεταξύ παρόμοιων προϊόντων άλλων κατασκευαστών.</p>
+                        <p style="margin-left: 1%;">Τα προϊόντα Ondolia διατίθενται στις αγορές των ΗΠΑ, της Κίνας και της Ιαπωνίας.</p>
+                    </div>
+
+                </div>
+
+                <div class="for_img_wr">
+                    <div class="for_img">
+                        <div style="position: relative; left: 101%; top: 24%;">
+                            <img src="{% static 'Heat_Life/img/plenka1.png' %}" />
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </section>
+
+            <section id="s_1_3">
+
+                <div class="article_int_wrapper">
+                    <div class="article_int">
+                        <button class="article_int_button"><p>Ανασκόπηση</p></button>
+                        <button class="article_int_button"><p>Το πλεονέκτημα των ταινιών</p></button>
+                    </div>
+                </div>
+
+                <h2 class="s_1_3_h">Подходит под любое твёрдое покрытие</h2>
+                <div class="s_1_3_spisok">
+                    <div class="s_1_3_podspisok" style=" border-right: 3px #FFC107 dotted !important;">
+                        <p style="font-weight: 600;">Теплый пол под ламинат, доску </p>
+                        <p>На черновой пол укладывается теплоотражающая подложка, проклеивается отопительная плёнка.</p>
+                        <p>Ламинат собирается прямо на отопительную плёнку. Дополнительная ламинатная подложка не нужна.</p>
+                        <p>Удобно использовать теплый пол в деревянном доме, коттедже.</p>
+                        <img src="{% static 'Heat_Life/img/1floor.jpg' %}" />
+                    </div>
+
+                    <div class="s_1_3_podspisok">
+                        <p style="font-weight: 600;">Теплый пол под фанеру, линолеум, плитку, ОСБ, ГВЛ.</p>
+                        <p>Под фанеру или осб — если хочется постелить ковролин или линолеум.</p>
+                        <p>Под ГВЛ, если хотите выложить кафель, но стяжку лить не собираетесь. Удобно использовать теплый пол на даче.</p>
+                        <img src="{% static 'Heat_Life/img/2floor.jpg' %}" />
+                    </div>
+
+                    <div class="s_1_3_podspisok" style="border-left: 3px #FFC107 dotted !important;">
+                        <p style="font-weight: 600;"> Под стяжку, наливной пол</p>
+                        <p>Плёнка засовывается в полиэтиленовый рукав, проклеивается скотчем к подложке. Сверху заливаются стяжкой.</p>
+                        <p>Стяжку стоит заливать толщиной от 4‑х сантиметров, чтобы не треснула — подложка даёт небольшую усадку.</p>
+                        <p>Удобно использовать теплый пол в частном доме.</p>
+                        <img src="{% static 'Heat_Life/img/3floor.jpg' %}" />
+                    </div>
+                </div>
+            </section>
+        </article>
+
+        <aside>
+            <div style="background-color: orange; width: 50px; height: 0px; position: absolute; z-index:-1;" id="myBar">
+
+            </div>
+            <div class="transparent-container clearfix">
+                <div class="fixed-holder"><div class="fixed-div"></div></div>
+                <div class="fixed-holder"><div class="fixed-div"></div></div>
+                <div class="fixed-holder"><div class="fixed-div"></div></div>
+                <div class="fixed-holder"><div class="fixed-div"></div></div>
+            </div>
+        </aside>
+    </main>
+    {% endblock %}
+    
+
+    <footer>
+        <div class="footer_sec">
+            <h3>Контакты</h3>
+            <a>О нас</a>
+            <a>+7 (383) 285-00-55</a>
+            <a>+7 913 771-28-32</a>
+            <a>manager@heatlife.ru</a>
+        </div>
+
+        <div class="footer_sec">
+            <h3>Другие города</h3>
+            <a>РАССЫЛКА НОВОСТЕЙ</a>
+
+        </div>
+
+        <div class="footer_sec">
+            <h3>Последние новости</h3>
+            <a></a>
+            <a></a>
+            <a></a>
+        </div>
+    </footer>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <style>
+
+
+        footer {
+            display: flex;
+            position: relative;
+            top: -19%;
+            flex-direction: row;
+            border-top: 1px dashed #9E9E9E;
+            justify-content: space-evenly;
+        }
+
+        .footer_sec {
+            display: flex;
+            flex-direction: column;
+            margin-left: 20px;
+            font-size: 19px;
+        }
+
+        footer a {
+            margin-bottom: 20px;
+            font-family: monospace;
+            color: #372c2cc2;
+        }
+
+        footer h3 {
+            margin-bottom: 20px;
+            font-family: monospace;
+            color: #FF5722;
+            text-decoration: underline;
+        }
+
+        #s_1_3 img {
+            width: 62%;
+            margin-left: 112px;
+        }
+
+        .s_1_3_spisok {
+            display: flex;
+        }
+
+        .s_1_3_podspisok {
+            margin-left: 17px;
+        }
+
+            .s_1_3_podspisok p {
+                width: 97%;
+                font-family: arial;
+                font-size: 18px;
+                color: #362a2e;
+                margin-left: 10px;
+            }
+
+        .s_1_3_h {
+            border-bottom: 3px #ffd391 dashed !important;
+            width: 29% !important;
+            font-family: arial !important;
+            font-size: 22px !important;
+            margin-left: 38% !important;
+            color: #362a2e !important;
+            margin-top: 1%;
+        }
+
+        .form_ser {
+            position: relative;
+            width: 300px;
+            margin: 14px 19px;
+        }
+
+        .input_ser {
+            width: 100%;
+            height: 42px;
+            padding-left: 10px;
+            border: 2px solid #ffc10763;
+            border-radius: 5px;
+            outline: none;
+            background: #F9F0DA;
+            color: #9E9C9C;
+        }
+
+        .button_ser {
+            position: absolute;
+            left: 274px;
+            top: 1px;
+            right: 0px;
+            width: 42px;
+            height: 46px;
+            border: none;
+            background: #F9F0DA;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+            .button_ser:before {
+                content: "\f002";
+                font-family: FontAwesome;
+                font-size: 16px;
+                color: #362a2e;
+            }
+
+        .s_1_1_h {
+            border-bottom: 5px #ffd391 dashed !important;
+            width: 24% !important;
+            font-family: arial !important;
+            font-size: 22px !important;
+            margin-left: 38% !important;
+            color: white !important;
+        }
+
+        .s_1_1_text {
+            width: 53%;
+            background-color: #0000003b;
+            margin-top: -124px;
+        }
+
+            .s_1_1_text p {
+                width: 97%;
+                font-family: arial;
+                font-size: 18px;
+                color: white;
+            }
+
+        /*.for_img {
+            margin: 50px auto;
+            background-image: url(/static/Heat_Life/img/sunset1.jpg);
+            height: 100%;
+            width: 100%;
+            transform: skewY(-185deg);
+        }*/
+
+        /*.for_img_wr {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 568px;
+            transform: skewY(-3deg);
+            top: -35%;
+            position: relative;
+            z-index: -1;
+        }*/
+        .for_img {
+            margin: 50px auto;
+            background-image: url(/static/Heat_Life/img/sunset1.jpg);
+            height: 100%;
+            width: 100%;
+            transform: skewY(0deg);
+        }
+
+        .for_img_wr {
+            content: '';
+            display: block;
+            width: 53%;
+            height: 800px;
+            transform: skewY(0deg);
+            top: -46%;
+            position: relative;
+            z-index: -1;
+        }
+
+        .box {
+            background-color: #87ceeb00;
+            margin-top: -35%;
+            padding: 0.2% 20px;
+            transform: skewY(0deg);
+            box-shadow: 10px 3px 5px #FF9800;
+        }
+
+            .box > .wrapper {
+                -webkit-transform: skewY(5deg);
+                transform: skewY(5deg);
+            }
+
+
+        html {
+            height: 500%;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 0px;
+            z-index: 99;
+        }
+
+        .header_menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .header__color {
+            background: #ffffff;
+            box-shadow: 10px 5px 5px #ffa549;
+        }
+        /*-------------------------------------------------------------*/
+
+        aside {
+            position: fixed;
+            bottom: 40%;
+            left: 1%;
+            height: 173px;
+        }
+
+        .transparent-container {
+            display: flex;
+            padding: 5px;
+            color: #ffffff;
+            width: 400px;
+            flex-direction: column;
+        }
+
+        .fixed-holder {
+            overflow: hidden;
+            width: 48px;
+            height: 41px;
+            margin: 0px;
+            padding: 0;
+            border: 0;
+        }
+
+        .fixed-div {
+            box-shadow: 0 0 0 500px #ffffff;
+            margin: 12px;
+            border-radius: 50%;
+            border: solid 1px #ed600096;
+            text-align: center;
+            padding: 8px;
+            width: 7px;
+            height: 7px;
+        }
+
+
+        /*-------------------------------------------------------------*/
+        main {
+            height: 70%;
+            width: 100%;
+            margin-top: 7%;
+        }
+
+        article {
+            height: 58%;
+            width: 98%;
+        }
+
+
+        .article_int_wrapper {
+        }
+
+        .article_int {
+            position: relative;
+            height: 7%;
+            border-bottom: 8px #FFC107 double;
+            width: 23%;
+            margin-left: 41%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            margin-top: 1%;
+        }
+
+        .art_over {
+            /* border-bottom: 8px #00BCD4 double; */
+            margin-left: 68% !important;
+        }
+
+        .art_but_over {
+            background-color: #ed6000b8 !important;
+            margin-top: 1%;
+        }
+
+        .article_int_button {
+            margin-right: 10px;
+            background-color: #ed6000;
+            color: white;
+            /* padding: 16px; */
+            margin-bottom: 2%;
+            font-size: 16px;
+            border: none;
+            max-height: 93%;
+            border-radius: 10px;
+        }
+
+        section {
+            border: 4px #ed600000 solid;
+            height: 741px;
+            width: 1550px;
+            box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.2);
+            border-radius: 130px;
+            margin-bottom: 4%;
+            overflow: hidden;
+            margin-left: 5%;
+        }
+
+        .s_text {
+            color: #362a2e;
+            font-size: 18px;
+            margin-left: 2%;
+            border-left: 8px #FFC107 double !important;
+            padding-left: 10px;
+        }
+
+            .s_text p {
+                font-family: arial;
+            }
+
+        .tezis {
+            width: 47%;
+            position: relative;
+            top: 9%;
+            left: 11%;
+            border-radius: 11px;
+            color: #362a2e;
+            font-size: 18px;
+        }
+
+        #tezis_1p1 {
+            width: 184px;
+            font-weight: bold;
+            font-size: 22px;
+            margin-left: 76%;
+            border-bottom: 5px #FFC107 dashed !important;
+        }
+
+        #tezis_1p2 {
+            margin-left: 62%;
+            font-size: 19px;
+            font-family: arial;
+        }
+
+        #tezis_1p3 {
+            margin-left: 24%;
+            font-size: 19px;
+            font-family: arial;
+        }
+
+        #tezis_1p4 {
+            margin-left: -8.5%;
+            font-size: 19px;
+            font-family: arial;
+        }
+
+        .vid_pos {
+            border-left: 8px #FFC107 double !important;
+            padding: 0px;
+            padding-left: 10px;
+        }
+
+
+        .vid_pos_wrapper {
+            width: 47%;
+            position: relative;
+            top: -21%;
+            left: 59%;
+            border-radius: 11px;
+        }
+        /*-------------------------------------------------------------*/
+        .dropbtn_lang {
+            background-color: #ed6000;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+
+        /* Контейнер <div> - необходим для размещения выпадающего содержимого */
+        .dropdown_lang {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Выпадающее содержимое (скрыто по умолчанию) */
+        .dropdown-content_lang {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            width: 100%;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            /* Ссылки внутри выпадающего списка */
+            .dropdown-content_lang button {
+                color: #362a2e;
+                font-family: "Roboto";
+                font-weight: bolder;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                width: 100%;
+                text-align: left;
+                background-color: transparent;
+                border-color: transparent;
+            }
+
+                /* Изменение цвета выпадающих ссылок при наведении курсора */
+                .dropdown-content_lang button:hover {
+                    background-color: #ddd;
+                }
+
+        /* Показать выпадающее меню при наведении курсора */
+        .dropdown_lang:hover .dropdown-content_lang {
+            display: block;
+        }
+
+        /* Изменение цвета фона кнопки раскрывающегося списка при отображении содержимого раскрывающегося списка */
+        .dropdown_lang:hover .dropbtn_lang {
+            background-color: #f3741c;
+        }
+        /*-------------------------------------------------*/
+
+        /* Кнопка выпадающего списка */
+        .dropbtn {
+            background-color: #ed6000;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            max-height: 90%;
+        }
+
+        /* Контейнер <div> - необходим для размещения выпадающего содержимого */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Выпадающее содержимое (скрыто по умолчанию) */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            width: 100%;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            /* Ссылки внутри выпадающего списка */
+            .dropdown-content button {
+                color: #362a2e;
+                font-family: "Roboto";
+                font-weight: bolder;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                width: 100%;
+                text-align: left;
+                background-color: transparent;
+                border-color: transparent;
+            }
+
+                /* Изменение цвета выпадающих ссылок при наведении курсора */
+                .dropdown-content button:hover {
+                    background-color: #ddd;
+                }
+
+        /* Показать выпадающее меню при наведении курсора */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Изменение цвета фона кнопки раскрывающегося списка при отображении содержимого раскрывающегося списка */
+        .dropdown:hover .dropbtn {
+            background-color: #ed6000;
+        }
+
+        /*
+        font-family: "PT Sans Narrow";
+        font-weight: normal;
+
+        font-family: "Roboto";
+        font-weight: 500;
+        */
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>
+        // When the user scrolls the page, execute myFunction
+        window.onscroll = function () { myFunction() };
+
+        function myFunction() {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.height = scrolled + "%";
+        }
+
+        $(document).scroll(function (e) {
+            $(window).scrollTop() > 70 ? $('header').addClass('header__color') : $('header').removeClass('header__color');
+        });
+    </script>
+</body>
+</html>
